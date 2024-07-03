@@ -4,6 +4,8 @@
 
 This project is an API for the game Elden Ring, created as part of my learning journey in programming. The goal is to provide various functionalities and data related to the game using a custom backend setup.
 
+![ER Title image](https://erapi.codingmak.com/images/SB_Title_01.png)
+
 ## Technologies Used
 
 - **Database**: ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=flat&logo=mariadb&logoColor=white)
