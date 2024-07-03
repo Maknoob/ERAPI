@@ -1,4 +1,4 @@
-package com.codingmak;
+package com.codingmak.api;
 
 
 import org.springframework.boot.SpringApplication;
