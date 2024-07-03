@@ -17,7 +17,7 @@ public class ShieldController {
 
     @GetMapping
     public List<Shield> getAllShields() {
-        return shieldService.getAllShields();
+        return shieldService.findAllShields();
     }
 
     @PostMapping

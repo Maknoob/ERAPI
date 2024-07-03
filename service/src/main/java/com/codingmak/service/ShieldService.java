@@ -14,7 +14,7 @@ public class ShieldService {
     @Autowired
     private ShieldRepository shieldRepository;
 
-    public List<Shield> getAllShields() {
+    public List<Shield> findAllShields() {
         return shieldRepository.findAll();
     }
 
