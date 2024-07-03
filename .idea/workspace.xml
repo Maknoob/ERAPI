@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa7950e0-5a5a-4778-b03f-6ff48df7c5be" name="Changes" comment="merge conflict resolved">
-      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application.properties" beforeDir="false" />
+    <list default="true" id="aa7950e0-5a5a-4778-b03f-6ff48df7c5be" name="Changes" comment="added API for shields with some DB-Entries">
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/codingmak/api/WeaponController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/com/codingmak/model/Weapon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/repositories/src/main/java/com/codingmak/repositories/WeaponRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/com/codingmak/service/WeaponService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/codingmak/api/ShieldController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/codingmak/api/ShieldController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/com/codingmak/service/ShieldService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/com/codingmak/service/ShieldService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +29,27 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1719934392" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -102,7 +130,23 @@
       <option name="project" value="LOCAL" />
       <updated>1719933927423</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added .idea inti gitignore">
+      <option name="closed" value="true" />
+      <created>1719950632616</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1719950632616</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added API for shields with some DB-Entries">
+      <option name="closed" value="true" />
+      <created>1719950676769</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1719950676769</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -132,6 +176,8 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="changed gitignore" />
     <MESSAGE value="merge conflict resolved" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge conflict resolved" />
+    <MESSAGE value="added .idea inti gitignore" />
+    <MESSAGE value="added API for shields with some DB-Entries" />
+    <option name="LAST_COMMIT_MESSAGE" value="added API for shields with some DB-Entries" />
   </component>
 </project>
