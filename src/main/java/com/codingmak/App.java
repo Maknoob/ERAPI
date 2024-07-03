@@ -1,4 +1,5 @@
-package com.codingmak.api;
+package com.codingmak;
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
