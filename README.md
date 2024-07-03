@@ -35,27 +35,31 @@ You can access the current version by visiting: [My Site](https://erapi.codingma
 
 The API provides the following endpoints:
 
-```
-GET /ashes
+`
+GET /ashes -
 Retrieves all Ashes currently available in the database.
-```
-```
-GET /ashes/{id}
+`
+
+`
+GET /ashes/{id} -
 Retrieves the item with the specified ID.
-```
-```
-GET /shields
+`
+
+`
+GET /shields -
 Retrieves all Shields currently available in the database.
-```
-```
-GET /weapons
+`
+
+`
+GET /weapons -
 Retrieves all Weapons currently available in the database.
-```
+`
 
 To display images, use the following endpoint:
-```
+
+`
 GET /images/{filename}
-```
+`
 
 I am continuously updating this project to provide more data and features in the future.
 
