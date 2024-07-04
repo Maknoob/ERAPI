@@ -1,14 +1,10 @@
 package com.codingmak.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 
 @Entity
-public class Shield {
-    @Id
-    private Long id;
-    private String name;
-    private String type;
+public class Shield extends BaseItem {
+
     private String requires;
     private String scaling;
     private String passive;
@@ -27,32 +23,7 @@ public class Shield {
     private int guardLigt;
     private int guardHoly;
     private int guardBoost;
-    private String dlc;
-    private String image;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public String getRequires() {
         return requires;
@@ -196,21 +167,5 @@ public class Shield {
 
     public void setGuardBoost(int guardBoost) {
         this.guardBoost = guardBoost;
-    }
-
-    public String getDlc() {
-        return dlc;
-    }
-
-    public void setDlc(String dlc) {
-        this.dlc = dlc;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 }
