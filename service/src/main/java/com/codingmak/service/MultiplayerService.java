@@ -6,18 +6,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class MultiplayerService {
+public class MultiplayerService implements BaseService<Multiplayer> {
 
     @Autowired
     private MultiplayerRepository multiplayerRepository;
 
-    public List<Multiplayer> findAllMultiplayerItems() {
+    @Override
+    public List<Multiplayer> findAll() {
         return multiplayerRepository.findAll();
     }
 
-    public Multiplayer saveMultiplayerItem(Multiplayer multiplayer) {
-        return multiplayerRepository.save(multiplayer);
+    @Override
+    public Optional<Multiplayer> findById(Long id) {
+        return multiplayerRepository.findById(id);
+    }
+
+    @Override
+    public Multiplayer save(Multiplayer entity) {
+        return multiplayerRepository.save(entity);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        multiplayerRepository.deleteById(id);
     }
 }

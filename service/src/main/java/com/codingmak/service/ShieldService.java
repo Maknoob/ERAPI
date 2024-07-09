@@ -9,21 +9,30 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ShieldService {
+public class ShieldService implements BaseService<Shield> {
 
     @Autowired
     private ShieldRepository shieldRepository;
 
-    public List<Shield> findAllShields() {
+
+    @Override
+    public List<Shield> findAll() {
         return shieldRepository.findAll();
     }
 
-    public Shield saveShield(Shield shield) {
-        return shieldRepository.save(shield);
-    }
-
+    @Override
     public Optional<Shield> findById(Long id) {
         return shieldRepository.findById(id);
+    }
+
+    @Override
+    public Shield save(Shield entity) {
+        return shieldRepository.save(entity);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        shieldRepository.deleteById(id);
     }
 
 }

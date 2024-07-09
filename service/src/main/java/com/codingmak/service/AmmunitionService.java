@@ -6,18 +6,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class AmmunitionService {
+public class AmmunitionService implements BaseService<Ammunition> {
 
     @Autowired
     private AmmunitionRepository ammunitionRepository;
 
-    public List<Ammunition> findAllAmmunition() {
+
+    @Override
+    public List<Ammunition> findAll() {
         return ammunitionRepository.findAll();
     }
 
-    public Ammunition saveAmmunition(Ammunition ammunition) {
-        return ammunitionRepository.save(ammunition);
+    @Override
+    public Optional<Ammunition> findById(Long id) {
+        return ammunitionRepository.findById(id);
+    }
+
+    @Override
+    public Ammunition save(Ammunition entity) {
+        return ammunitionRepository.save(entity);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        ammunitionRepository.deleteById(id);
     }
 }

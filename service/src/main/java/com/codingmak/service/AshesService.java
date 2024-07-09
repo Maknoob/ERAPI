@@ -9,20 +9,28 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AshesService {
+public class AshesService implements BaseService<Ashes> {
 
     @Autowired
     private AshesRepository ashesRepository;
 
-    public List<Ashes> findAllAshes() {
+    @Override
+    public List<Ashes> findAll() {
         return ashesRepository.findAll();
     }
 
-    public Ashes saveAshes(Ashes ashes) {
-        return ashesRepository.save(ashes);
-    }
-
+    @Override
     public Optional<Ashes> findById(Long id) {
         return ashesRepository.findById(id);
+    }
+
+    @Override
+    public Ashes save(Ashes entity) {
+        return ashesRepository.save(entity);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        ashesRepository.deleteById(id);
     }
 }
