@@ -30,13 +30,13 @@ public class CrystalTearController implements BaseController<CrystalTear> {
     public CrystalTear update(Long id, CrystalTear entity) {
         CrystalTear crystalTear = crystalTearService.findById(id)
                 .orElseThrow(() -> new RuntimeException("Crystal Tear not found."));
-        crystalTear.setName(crystalTear.getName());
-        crystalTear.setType(crystalTear.getType());
-        crystalTear.setDlc(crystalTear.getDlc());
-        crystalTear.setImage(crystalTear.getImage());
-        crystalTear.setLocation(crystalTear.getLocation());
-        crystalTear.setDurationInSec(crystalTear.getDurationInSec());
-        crystalTear.setWhenUsed(crystalTear.getWhenUsed());
+        crystalTear.setName(entity.getName());
+        crystalTear.setType(entity.getType());
+        crystalTear.setDlc(entity.getDlc());
+        crystalTear.setImage(entity.getImage());
+        crystalTear.setLocation(entity.getLocation());
+        crystalTear.setDurationInSec(entity.getDurationInSec());
+        crystalTear.setWhenUsed(entity.getWhenUsed());
         return crystalTearService.save(crystalTear);
     }
 

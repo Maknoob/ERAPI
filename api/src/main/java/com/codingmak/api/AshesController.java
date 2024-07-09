@@ -10,37 +10,42 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("ashes")
-public class AshesController {
+public class AshesController implements BaseController<Ashes> {
 
     @Autowired
     private AshesService ashesService;
 
-    @GetMapping
-    public List<Ashes> getAllAshes() {
-        return ashesService.findAllAshes();
+    @Override
+    public List<Ashes> getAll() {
+        return ashesService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Optional<Ashes> findById(@PathVariable("id") Long id) {
+    @Override
+    public Optional<Ashes> getById(Long id) {
         return ashesService.findById(id);
     }
 
-    @PostMapping
-    public Ashes createAshes(@RequestBody Ashes ashes) {
-        return ashesService.saveAshes(ashes);
+    @Override
+    public Ashes update(Long id, Ashes entity) {
+        Ashes ashes = ashesService.findById(id)
+                .orElseThrow(() -> new RuntimeException("Ashes not found"));
+        ashes.setName(entity.getName());
+        ashes.setType(entity.getType());
+        ashes.setFpCost(entity.getFpCost());
+        ashes.setHpCost(entity.getHpCost());
+        ashes.setEffect(entity.getEffect());
+        ashes.setDlc(entity.getDlc());
+        ashes.setImage(entity.getImage());
+        return ashesService.save(ashes);
     }
 
-    @PutMapping("/{id}")
-    public Ashes updateAshes(@PathVariable("id") Long id, @RequestBody Ashes ashesDetails) {
-        Ashes ashes = ashesService.findById(id).orElseThrow(() -> new RuntimeException("Ashes not found"));
-        ashes.setName(ashesDetails.getName());
-        ashes.setType(ashesDetails.getType());
-        ashes.setFpCost(ashesDetails.getFpCost());
-        ashes.setHpCost(ashesDetails.getHpCost());
-        ashes.setEffect(ashesDetails.getEffect());
-        ashes.setDlc(ashesDetails.getDlc());
-        ashes.setImage(ashesDetails.getImage());
-        return ashesService.saveAshes(ashes);
+    @Override
+    public Ashes create(Ashes entity) {
+        return ashesService.save(entity);
     }
 
+    @Override
+    public void deleteById(Long id) {
+        ashesService.deleteById(id);
+    }
 }
