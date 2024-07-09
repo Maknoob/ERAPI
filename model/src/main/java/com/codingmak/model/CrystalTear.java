@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 public class CrystalTear extends BaseItem {
     private String whenUsed;
     private int durationInSec;
+    @Column(columnDefinition = "LONGTEXT")
     private String location;
 
     public String getWhenUsed() {
