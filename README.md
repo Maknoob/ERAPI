@@ -33,31 +33,23 @@ The images used in this project have been provided by the Reddit user Erigondo, 
 
 ## Usage
 
-You can access the current version by visiting: [My Site](https://erapi.codingmak.com/shields).
+You can access the current version by visiting: [Elden Ring - API](https://er.codingmak.com).
+You can also use the [Documentation](https://erdoc.codingmak.com), but it is still under construction.
 
 The API provides the following endpoints:
 
 `
-GET /ashes -
+GET /ashes | /shields | /weapons | /multiplayer | /infoitems | /ammunition -
 Retrieves all Ashes currently available in the database.
 `
 
 `
-GET /ashes/{id} -
+GET /ashes/search?id={id} -
 Retrieves the item with the specified ID.
 `
 
-`
-GET /shields -
-Retrieves all Shields currently available in the database.
-`
 
-`
-GET /weapons -
-Retrieves all Weapons currently available in the database.
-`
-
-To display images, use the following endpoint:
+**To display images, use the following endpoint:**
 
 `
 GET /images/{filename}
@@ -71,7 +63,7 @@ I welcome any bug reports or suggestions for improvements. However, please note 
 
 ## Contact
 
-For any inquiries or further information, please reach out via email at `hello@codingmak.com`.
+For any inquiries or further information, please reach out via email at `hello@codingmak.com` or open an issue in this repo.
 
 Thank you for your interest in the Elden Ring API project! Your feedback and suggestions are valuable to me as I continue to learn and develop my programming skills.
 
