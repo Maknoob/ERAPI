@@ -6,18 +6,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class CrystalTearService {
+public class CrystalTearService implements BaseService<CrystalTear> {
 
     @Autowired
     private CrystalTearRepository crystalTearRepository;
 
-    public List<CrystalTear> findAllCrystalTears() {
+    @Override
+    public List<CrystalTear> findAll() {
         return crystalTearRepository.findAll();
     }
 
-    public CrystalTear saveItem(CrystalTear crystalTear) {
-        return crystalTearRepository.save(crystalTear);
+    @Override
+    public Optional<CrystalTear> findById(Long id) {
+        return crystalTearRepository.findById(id);
+    }
+
+    @Override
+    public CrystalTear save(CrystalTear entity) {
+        return crystalTearRepository.save(entity);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        crystalTearRepository.deleteById(id);
     }
 }
