@@ -25,6 +25,12 @@ public class CrystalTearService implements BaseService<CrystalTear> {
     }
 
     @Override
+    public List<CrystalTear> search(Long id, String name, String type) {
+        return List.of();
+    }
+
+
+    @Override
     public CrystalTear save(CrystalTear entity) {
         return crystalTearRepository.save(entity);
     }

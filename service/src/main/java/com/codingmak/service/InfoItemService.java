@@ -25,6 +25,12 @@ public class InfoItemService implements BaseService<InfoItem> {
     }
 
     @Override
+    public List<InfoItem> search(Long id, String name, String type) {
+        return List.of();
+    }
+
+
+    @Override
     public InfoItem save(InfoItem entity) {
         return infoItemRepository.save(entity);
     }

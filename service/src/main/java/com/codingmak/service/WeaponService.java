@@ -25,6 +25,12 @@ public class WeaponService implements BaseService<Weapon> {
     }
 
     @Override
+    public List<Weapon> search(Long id, String name, String type) {
+        return List.of();
+    }
+
+
+    @Override
     public Weapon save(Weapon entity) {
         return weaponRepository.save(entity);
     }

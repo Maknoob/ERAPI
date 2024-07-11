@@ -26,6 +26,12 @@ public class AmmunitionService implements BaseService<Ammunition> {
     }
 
     @Override
+    public List<Ammunition> search(Long id, String name, String type) {
+        return List.of();
+    }
+
+
+    @Override
     public Ammunition save(Ammunition entity) {
         return ammunitionRepository.save(entity);
     }

@@ -25,6 +25,12 @@ public class AshesService implements BaseService<Ashes> {
     }
 
     @Override
+    public List<Ashes> search(Long id, String name, String type) {
+        return List.of();
+    }
+
+
+    @Override
     public Ashes save(Ashes entity) {
         return ashesRepository.save(entity);
     }

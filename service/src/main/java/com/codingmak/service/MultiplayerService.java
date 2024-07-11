@@ -25,6 +25,12 @@ public class MultiplayerService implements BaseService<Multiplayer> {
     }
 
     @Override
+    public List<Multiplayer> search(Long id, String name, String type) {
+        return List.of();
+    }
+
+
+    @Override
     public Multiplayer save(Multiplayer entity) {
         return multiplayerRepository.save(entity);
     }
