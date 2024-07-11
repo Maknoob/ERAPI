@@ -26,6 +26,12 @@ public class ShieldService implements BaseService<Shield> {
     }
 
     @Override
+    public List<Shield> search(Long id, String name, String type) {
+        return List.of();
+    }
+
+
+    @Override
     public Shield save(Shield entity) {
         return shieldRepository.save(entity);
     }
