@@ -3,15 +3,14 @@ package com.codingmak.api;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface BaseController<T> {
 
     @GetMapping
-    List<T> getAll();
-
-    @GetMapping("/search")
-    Optional<T> getById(@RequestParam("id") Long id);
+    List<T> search(
+            @RequestParam(value = "id", required = false) Long id,
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "type", required = false) String type);
 
     @PutMapping
     T update(@RequestParam("id") Long id, @RequestBody T entity);
