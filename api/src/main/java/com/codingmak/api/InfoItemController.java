@@ -17,13 +17,8 @@ public class InfoItemController implements BaseController<InfoItem> {
 
 
     @Override
-    public List<InfoItem> getAll() {
-        return infoItemService.findAll();
-    }
-
-    @Override
-    public Optional<InfoItem> getById(Long id) {
-        return infoItemService.findById(id);
+    public List<InfoItem> search(Long id, String name, String type) {
+        return List.of();
     }
 
     @Override

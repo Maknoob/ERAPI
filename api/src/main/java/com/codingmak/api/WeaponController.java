@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("weapons")
@@ -17,14 +16,10 @@ public class WeaponController implements BaseController<Weapon> {
 
 
     @Override
-    public List<Weapon> getAll() {
-        return weaponService.findAll();
+    public List<Weapon> search(Long id, String name, String type) {
+        return List.of();
     }
 
-    @Override
-    public Optional<Weapon> getById(Long id) {
-        return weaponService.findById(id);
-    }
 
     @Override
     public Weapon update(Long id, Weapon entity) {

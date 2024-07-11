@@ -16,14 +16,10 @@ public class AmmunitionController implements BaseController<Ammunition> {
     private AmmunitionService ammunitionService;
 
     @Override
-    public List<Ammunition> getAll() {
-        return ammunitionService.findAll();
+    public List<Ammunition> search(Long id, String name, String type) {
+        return List.of();
     }
 
-    @Override
-    public Optional<Ammunition> getById(Long id) {
-        return ammunitionService.findById(id);
-    }
 
     @Override
     public Ammunition update(Long id, Ammunition entity) {

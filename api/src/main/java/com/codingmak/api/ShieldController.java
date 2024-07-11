@@ -16,15 +16,12 @@ public class ShieldController implements BaseController<Shield> {
     @Autowired
     private ShieldService shieldService;
 
-    @Override
-    public List<Shield> getAll() {
-        return shieldService.findAll();
-    }
 
     @Override
-    public Optional<Shield> getById(Long id) {
-        return shieldService.findById(id);
+    public List<Shield> search(Long id, String name, String type) {
+        return List.of();
     }
+
 
     @Override
     public Shield update(Long id, Shield entity) {

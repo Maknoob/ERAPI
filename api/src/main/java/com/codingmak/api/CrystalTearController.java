@@ -15,16 +15,12 @@ public class CrystalTearController implements BaseController<CrystalTear> {
     @Autowired
     private CrystalTearService crystalTearService;
 
-    @Override
-    public List<CrystalTear> getAll() {
-        return crystalTearService.findAll();
-    }
 
     @Override
-    public Optional<CrystalTear> getById(Long id) {
-        return Optional.ofNullable(crystalTearService.findById(id)
-                .orElseThrow(() -> new RuntimeException("Crystal Tear not found.")));
+    public List<CrystalTear> search(Long id, String name, String type) {
+        return List.of();
     }
+
 
     @Override
     public CrystalTear update(Long id, CrystalTear entity) {

@@ -16,13 +16,8 @@ public class AshesController implements BaseController<Ashes> {
     private AshesService ashesService;
 
     @Override
-    public List<Ashes> getAll() {
-        return ashesService.findAll();
-    }
-
-    @Override
-    public Optional<Ashes> getById(Long id) {
-        return ashesService.findById(id);
+    public List<Ashes> search(Long id, String name, String type) {
+        return List.of();
     }
 
     @Override

@@ -17,14 +17,10 @@ public class MultiplayerController implements BaseController<Multiplayer> {
 
 
     @Override
-    public List<Multiplayer> getAll() {
-        return multiplayerService.findAll();
+    public List<Multiplayer> search(Long id, String name, String type) {
+        return List.of();
     }
 
-    @Override
-    public Optional<Multiplayer> getById(Long id) {
-        return multiplayerService.findById(id);
-    }
 
     @Override
     public Multiplayer update(Long id, Multiplayer entity) {
