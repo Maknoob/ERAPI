@@ -9,6 +9,8 @@ public interface BaseService<T> {
 
     Optional<T> findById(Long id);
 
+    List<T> search(Long id, String name, String type);
+
     T save(T entity);
 
     void deleteById(Long id);
