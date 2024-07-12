@@ -30,7 +30,7 @@ public class WeaponService implements BaseService<Weapon> {
     }
 
 
-    @Override
+    /* @Override
     public Weapon save(Weapon entity) {
         return weaponRepository.save(entity);
     }
@@ -38,5 +38,5 @@ public class WeaponService implements BaseService<Weapon> {
     @Override
     public void deleteById(Long id) {
         weaponRepository.deleteById(id);
-    }
+    } */
 }

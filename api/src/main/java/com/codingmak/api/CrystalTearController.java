@@ -22,7 +22,7 @@ public class CrystalTearController implements BaseController<CrystalTear> {
     }
 
 
-    @Override
+    /* @Override
     public CrystalTear update(Long id, CrystalTear entity) {
         CrystalTear crystalTear = crystalTearService.findById(id)
                 .orElseThrow(() -> new RuntimeException("Crystal Tear not found."));
@@ -44,5 +44,5 @@ public class CrystalTearController implements BaseController<CrystalTear> {
     @Override
     public void deleteById(Long id) {
         crystalTearService.deleteById(id);
-    }
+    } */
 }

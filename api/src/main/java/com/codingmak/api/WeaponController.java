@@ -21,7 +21,7 @@ public class WeaponController implements BaseController<Weapon> {
     }
 
 
-    @Override
+    /* @Override
     public Weapon update(Long id, Weapon entity) {
         Weapon weapon = weaponService.findById(id)
                 .orElseThrow(() -> new RuntimeException("Weapon not Found"));
@@ -56,5 +56,5 @@ public class WeaponController implements BaseController<Weapon> {
     @Override
     public void deleteById(Long id) {
         weaponService.deleteById(id);
-    }
+    } */
 }

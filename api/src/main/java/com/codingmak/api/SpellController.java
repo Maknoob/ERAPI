@@ -38,7 +38,7 @@ public class SpellController implements BaseController<Spell> {
         return spellService.searchIncantations(id, name, type);
     }
 
-    @Override
+    /* @Override
     public Spell update(Long id, Spell entity) {
         Spell spell = spellService.findById(id)
                 .orElseThrow(() -> new RuntimeException("Spell not found"));
@@ -64,5 +64,5 @@ public class SpellController implements BaseController<Spell> {
     @Override
     public void deleteById(Long id) {
         spellService.deleteById(id);
-    }
+    } */
 }

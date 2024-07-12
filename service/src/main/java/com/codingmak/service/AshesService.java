@@ -30,7 +30,7 @@ public class AshesService implements BaseService<Ashes> {
     }
 
 
-    @Override
+    /* @Override
     public Ashes save(Ashes entity) {
         return ashesRepository.save(entity);
     }
@@ -38,5 +38,5 @@ public class AshesService implements BaseService<Ashes> {
     @Override
     public void deleteById(Long id) {
         ashesRepository.deleteById(id);
-    }
+    } */
 }

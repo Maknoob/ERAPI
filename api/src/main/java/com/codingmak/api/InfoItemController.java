@@ -21,7 +21,7 @@ public class InfoItemController implements BaseController<InfoItem> {
         return List.of();
     }
 
-    @Override
+    /* @Override
     public InfoItem update(Long id, InfoItem entity) {
         InfoItem infoItem = infoItemService.findById(id)
                 .orElseThrow(() -> new RuntimeException("Info Item not found"));
@@ -42,5 +42,5 @@ public class InfoItemController implements BaseController<InfoItem> {
     @Override
     public void deleteById(Long id) {
         infoItemService.deleteById(id);
-    }
+    } */
 }

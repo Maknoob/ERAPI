@@ -30,7 +30,7 @@ public class InfoItemService implements BaseService<InfoItem> {
     }
 
 
-    @Override
+    /* @Override
     public InfoItem save(InfoItem entity) {
         return infoItemRepository.save(entity);
     }
@@ -38,5 +38,5 @@ public class InfoItemService implements BaseService<InfoItem> {
     @Override
     public void deleteById(Long id) {
         infoItemRepository.deleteById(id);
-    }
+    } */
 }

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("shields")
@@ -23,7 +22,7 @@ public class ShieldController implements BaseController<Shield> {
     }
 
 
-    @Override
+    /* @Override
     public Shield update(Long id, Shield entity) {
         Shield shield = shieldService.findById(id)
                 .orElseThrow(() -> new RuntimeException("Shield not Found"));
@@ -58,5 +57,5 @@ public class ShieldController implements BaseController<Shield> {
     @Override
     public void deleteById(Long id) {
         shieldService.deleteById(id);
-    }
+    } */
 }

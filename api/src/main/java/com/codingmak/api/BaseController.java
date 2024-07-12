@@ -12,13 +12,13 @@ public interface BaseController<T> {
             @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "type", required = false) String type);
 
-    @PutMapping
+    /* @PutMapping
     T update(@RequestParam("id") Long id, @RequestBody T entity);
 
     @PostMapping
     T create(@RequestBody T entity);
 
     @DeleteMapping
-    void deleteById(@RequestParam("delete") Long id);
+    void deleteById(@RequestParam("delete") Long id); */
 
 }

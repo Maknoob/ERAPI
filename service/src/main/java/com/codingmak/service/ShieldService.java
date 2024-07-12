@@ -31,7 +31,7 @@ public class ShieldService implements BaseService<Shield> {
     }
 
 
-    @Override
+    /* @Override
     public Shield save(Shield entity) {
         return shieldRepository.save(entity);
     }
@@ -39,6 +39,6 @@ public class ShieldService implements BaseService<Shield> {
     @Override
     public void deleteById(Long id) {
         shieldRepository.deleteById(id);
-    }
+    } */
 
 }

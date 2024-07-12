@@ -22,7 +22,7 @@ public class MultiplayerController implements BaseController<Multiplayer> {
     }
 
 
-    @Override
+    /* @Override
     public Multiplayer update(Long id, Multiplayer entity) {
         Multiplayer multiplayer = multiplayerService.findById(id)
                 .orElseThrow(() -> new RuntimeException("Multiplayer Item not found"));
@@ -43,5 +43,5 @@ public class MultiplayerController implements BaseController<Multiplayer> {
     @Override
     public void deleteById(Long id) {
         multiplayerService.deleteById(id);
-    }
+    } */
 }

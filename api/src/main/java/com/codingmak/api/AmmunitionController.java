@@ -21,7 +21,7 @@ public class AmmunitionController implements BaseController<Ammunition> {
     }
 
 
-    @Override
+    /* @Override
     public Ammunition update(Long id, Ammunition entity) {
         Ammunition ammunition = ammunitionService.findById(id)
                 .orElseThrow(() -> new RuntimeException("Ammunition not found."));
@@ -48,5 +48,5 @@ public class AmmunitionController implements BaseController<Ammunition> {
     @Override
     public void deleteById(Long id) {
         ammunitionService.deleteById(id);
-    }
+    } */
 }

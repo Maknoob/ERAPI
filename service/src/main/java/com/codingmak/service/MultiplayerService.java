@@ -30,7 +30,7 @@ public class MultiplayerService implements BaseService<Multiplayer> {
     }
 
 
-    @Override
+    /* @Override
     public Multiplayer save(Multiplayer entity) {
         return multiplayerRepository.save(entity);
     }
@@ -38,5 +38,5 @@ public class MultiplayerService implements BaseService<Multiplayer> {
     @Override
     public void deleteById(Long id) {
         multiplayerRepository.deleteById(id);
-    }
+    } */
 }

@@ -15,6 +15,9 @@ public class SpellService implements BaseService<Spell> {
     @Autowired
     private SpellRepository spellRepository;
 
+    @Autowired
+    private UserService userService;
+
 
     @Override
     public List<Spell> findAll() {
@@ -78,15 +81,15 @@ public class SpellService implements BaseService<Spell> {
     }
 
 
-    @Override
+    /* @Override
     public Spell save(Spell entity) {
-        return spellRepository.save(entity);
+            return spellRepository.save(entity);
     }
 
     @Override
     public void deleteById(Long id) {
         spellRepository.deleteById(id);
-    }
+    } */
 
     public List<Spell> findByName(String name) {
         return spellRepository.findByName(name);

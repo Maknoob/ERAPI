@@ -11,8 +11,8 @@ public interface BaseService<T> {
 
     List<T> search(Long id, String name, String type);
 
-    T save(T entity);
+    // T save(T entity);
 
-    void deleteById(Long id);
+    // void deleteById(Long id);
 
 }

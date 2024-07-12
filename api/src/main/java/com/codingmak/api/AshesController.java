@@ -20,7 +20,7 @@ public class AshesController implements BaseController<Ashes> {
         return List.of();
     }
 
-    @Override
+    /* @Override
     public Ashes update(Long id, Ashes entity) {
         Ashes ashes = ashesService.findById(id)
                 .orElseThrow(() -> new RuntimeException("Ashes not found"));
@@ -42,5 +42,5 @@ public class AshesController implements BaseController<Ashes> {
     @Override
     public void deleteById(Long id) {
         ashesService.deleteById(id);
-    }
+    } */
 }

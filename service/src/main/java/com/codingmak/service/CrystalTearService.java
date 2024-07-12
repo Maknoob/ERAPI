@@ -30,7 +30,7 @@ public class CrystalTearService implements BaseService<CrystalTear> {
     }
 
 
-    @Override
+    /* @Override
     public CrystalTear save(CrystalTear entity) {
         return crystalTearRepository.save(entity);
     }
@@ -38,5 +38,5 @@ public class CrystalTearService implements BaseService<CrystalTear> {
     @Override
     public void deleteById(Long id) {
         crystalTearRepository.deleteById(id);
-    }
+    } */
 }
