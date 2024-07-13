@@ -6,28 +6,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class ShieldService implements BaseService<Shield> {
+public class ShieldService {
 
     @Autowired
     private ShieldRepository shieldRepository;
 
 
-    @Override
-    public List<Shield> findAll() {
+    public List<Shield> search(Long id, String name, String type, String requires, String scaling) {
+        if (id != null) {
+            return shieldRepository.findById(id).stream().toList();
+        }
+        if (name != null) {
+            return shieldRepository.findByNameContaining(name);
+        }
+        if (type != null) {
+            return shieldRepository.findByTypeContaining(type);
+        }
+        if (requires != null) {
+            return shieldRepository.findByRequiresContaining(requires);
+        }
+        if (scaling != null) {
+            return shieldRepository.findByScalingContaining(scaling);
+        }
         return shieldRepository.findAll();
-    }
-
-    @Override
-    public Optional<Shield> findById(Long id) {
-        return shieldRepository.findById(id);
-    }
-
-    @Override
-    public List<Shield> search(Long id, String name, String type) {
-        return List.of();
     }
 
 
