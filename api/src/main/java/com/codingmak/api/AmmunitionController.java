@@ -10,14 +10,16 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/ammunition")
-public class AmmunitionController implements BaseController<Ammunition> {
+public class AmmunitionController {
 
     @Autowired
     private AmmunitionService ammunitionService;
 
-    @Override
-    public List<Ammunition> search(Long id, String name, String type) {
-        return List.of();
+    @GetMapping
+    public List<Ammunition> search(
+            @RequestParam(value = "id", required = false) Long id,
+            @RequestParam(value = "name", required = false) String name) {
+        return ammunitionService.search(id, name);
     }
 
 

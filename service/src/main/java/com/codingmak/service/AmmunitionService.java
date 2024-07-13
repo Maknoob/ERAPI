@@ -9,25 +9,20 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AmmunitionService implements BaseService<Ammunition> {
+public class AmmunitionService {
 
     @Autowired
     private AmmunitionRepository ammunitionRepository;
 
 
-    @Override
-    public List<Ammunition> findAll() {
+    public List<Ammunition> search(Long id, String name) {
+        if (id != null) {
+            return ammunitionRepository.findById(id).stream().toList();
+        }
+        if (name != null) {
+            return ammunitionRepository.findByNameContaining(name);
+        }
         return ammunitionRepository.findAll();
-    }
-
-    @Override
-    public Optional<Ammunition> findById(Long id) {
-        return ammunitionRepository.findById(id);
-    }
-
-    @Override
-    public List<Ammunition> search(Long id, String name, String type) {
-        return List.of();
     }
 
 
