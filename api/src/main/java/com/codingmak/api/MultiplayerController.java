@@ -6,19 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/multiplayer")
-public class MultiplayerController implements BaseController<Multiplayer> {
+public class MultiplayerController {
 
     @Autowired
     private MultiplayerService multiplayerService;
 
-
-    @Override
-    public List<Multiplayer> search(Long id, String name, String type) {
-        return List.of();
+    @GetMapping
+    public List<Multiplayer> search(
+            @RequestParam(value = "id", required = false) Long id,
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "type", required = false) String type) {
+        return multiplayerService.search(id, name, type);
     }
 
 

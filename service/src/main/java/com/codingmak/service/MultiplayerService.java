@@ -6,27 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class MultiplayerService implements BaseService<Multiplayer> {
+public class MultiplayerService {
 
     @Autowired
     private MultiplayerRepository multiplayerRepository;
 
-    @Override
-    public List<Multiplayer> findAll() {
-        return multiplayerRepository.findAll();
-    }
 
-    @Override
-    public Optional<Multiplayer> findById(Long id) {
-        return multiplayerRepository.findById(id);
-    }
-
-    @Override
     public List<Multiplayer> search(Long id, String name, String type) {
-        return List.of();
+        if (id != null) {
+            return multiplayerRepository.findById(id).stream().toList();
+        }
+        if (name != null) {
+            return multiplayerRepository.findByNameContaining(name);
+        }
+        if (type != null) {
+            return multiplayerRepository.findByTypeContaining(type);
+        }
+        return multiplayerRepository.findAll();
     }
 
 
