@@ -6,27 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class CrystalTearService implements BaseService<CrystalTear> {
+public class CrystalTearService {
 
     @Autowired
     private CrystalTearRepository crystalTearRepository;
 
-    @Override
-    public List<CrystalTear> findAll() {
-        return crystalTearRepository.findAll();
-    }
 
-    @Override
-    public Optional<CrystalTear> findById(Long id) {
-        return crystalTearRepository.findById(id);
-    }
-
-    @Override
     public List<CrystalTear> search(Long id, String name, String type) {
-        return List.of();
+        if (id != null) {
+            return crystalTearRepository.findById(id).stream().toList();
+        }
+        if (name != null) {
+            return crystalTearRepository.findByNameContaining(name);
+        }
+        if (type != null) {
+            return crystalTearRepository.findByTypeContaining(type);
+        }
+        return crystalTearRepository.findAll();
     }
 
 

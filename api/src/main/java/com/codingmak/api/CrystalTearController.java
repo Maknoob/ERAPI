@@ -6,19 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/crystaltears")
-public class CrystalTearController implements BaseController<CrystalTear> {
+public class CrystalTearController {
 
     @Autowired
     private CrystalTearService crystalTearService;
 
-
-    @Override
-    public List<CrystalTear> search(Long id, String name, String type) {
-        return List.of();
+    @GetMapping
+    public List<CrystalTear> search(
+            @RequestParam(name = "id", required = false) Long id,
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "type", required = false) String type) {
+        return crystalTearService.search(id, name, type);
     }
 
 
