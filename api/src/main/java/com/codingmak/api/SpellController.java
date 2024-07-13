@@ -12,30 +12,34 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/spells")
-public class SpellController implements BaseController<Spell> {
+public class SpellController {
 
     @Autowired
     private SpellService spellService;
 
-    @Override
-    public List<Spell> search(Long id, String name, String type) {
-        return spellService.search(id, name, type);
+    @GetMapping
+    public List<Spell> search(
+            @RequestParam(value = "id", required = false) Long id,
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "type", required = false) String type,
+            @RequestParam(value = "bonus", required = false) String bonus) {
+        return spellService.search(id, name, type, bonus);
     }
 
     @GetMapping("/sorceries")
     public List<Spell> getSorceries(
             @RequestParam(value = "id", required = false) Long id,
             @RequestParam(value = "name", required = false) String name,
-            @RequestParam(value = "type", required = false) String type) {
-        return spellService.searchSorceries(id, name, type);
+            @RequestParam(value = "bonus", required = false) String bonus) {
+        return spellService.searchSorceries(id, name, bonus);
     }
 
     @GetMapping("/incantations")
     public List<Spell> getIncantations(
             @RequestParam(value = "id", required = false) Long id,
             @RequestParam(value = "name", required = false) String name,
-            @RequestParam(value = "type", required = false) String type) {
-        return spellService.searchIncantations(id, name, type);
+            @RequestParam(value = "bonus", required = false) String bonus) {
+        return spellService.searchIncantations(id, name, bonus);
     }
 
     /* @Override

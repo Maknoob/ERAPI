@@ -8,5 +8,6 @@ import java.util.List;
 public interface SpellRepository extends JpaRepository<Spell, Long> {
     List<Spell> findByName(String name);
     List<Spell> findByType(String type);
-    List<Spell> findByNameAndType(String name, String type);
+    List<Spell> findByBonus(String bonus);
+    List<Spell> findByNameAndType(String name, String bonus);
 }
