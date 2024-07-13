@@ -6,18 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("ashes")
-public class AshesController implements BaseController<Ashes> {
+public class AshesController {
 
     @Autowired
     private AshesService ashesService;
 
-    @Override
-    public List<Ashes> search(Long id, String name, String type) {
-        return List.of();
+    @GetMapping
+    public List<Ashes> search(
+            @RequestParam(name = "id", required = false) Long id,
+            @RequestParam(name = "name", required = false) String name) {
+        return ashesService.search(id, name);
     }
 
     /* @Override

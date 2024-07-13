@@ -6,27 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class AshesService implements BaseService<Ashes> {
+public class AshesService {
 
     @Autowired
     private AshesRepository ashesRepository;
 
-    @Override
-    public List<Ashes> findAll() {
+    public List<Ashes> search(Long id, String name) {
+        if (id != null) {
+            return ashesRepository.findById(id).stream().toList();
+        }
+        if (name != null) {
+            return ashesRepository.findByNameContaining(name);
+        }
         return ashesRepository.findAll();
-    }
-
-    @Override
-    public Optional<Ashes> findById(Long id) {
-        return ashesRepository.findById(id);
-    }
-
-    @Override
-    public List<Ashes> search(Long id, String name, String type) {
-        return List.of();
     }
 
 

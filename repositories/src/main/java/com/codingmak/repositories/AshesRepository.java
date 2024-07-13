@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface AshesRepository extends JpaRepository<Ashes, Long> {
-    List<Ashes> findByName(String name);
+    List<Ashes> findByNameContaining(String name);
 }
