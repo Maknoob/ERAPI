@@ -8,6 +8,6 @@ import java.util.List;
 public interface ShieldRepository extends JpaRepository<Shield, Long> {
     List<Shield> findByNameContaining(String name);
     List<Shield> findByTypeContaining(String type);
-    List<Shield> findByRequiresContaining(String name);
-    List<Shield> findByScalingContaining(String type);
+    List<Shield> findByRequiresContaining(String requires);
+    List<Shield> findByScalingContaining(String scaling);
 }
