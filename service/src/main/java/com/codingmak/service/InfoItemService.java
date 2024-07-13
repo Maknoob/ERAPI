@@ -6,27 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class InfoItemService implements BaseService<InfoItem> {
+public class InfoItemService {
 
     @Autowired
     private InfoItemRepository infoItemRepository;
 
-    @Override
-    public List<InfoItem> findAll() {
-        return infoItemRepository.findAll();
-    }
 
-    @Override
-    public Optional<InfoItem> findById(Long id) {
-        return infoItemRepository.findById(id);
-    }
-
-    @Override
     public List<InfoItem> search(Long id, String name, String type) {
-        return List.of();
+        if (id != null) {
+            return infoItemRepository.findById(id).stream().toList();
+        }
+        if (name != null) {
+            return infoItemRepository.findByNameContaining(name);
+        }
+        if (type != null) {
+            return infoItemRepository.findByTypeContaining(type);
+        }
+        return infoItemRepository.findAll();
     }
 
 
