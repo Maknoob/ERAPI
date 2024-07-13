@@ -6,27 +6,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class WeaponService implements BaseService<Weapon> {
+public class WeaponService {
 
     @Autowired
     private WeaponRepository weaponRepository;
 
-    @Override
-    public List<Weapon> findAll() {
+    public List<Weapon> search(Long id, String name, String type, String requires, String scaling) {
+        if (id != null) {
+            return weaponRepository.findById(id).stream().toList();
+        }
+        if (name != null) {
+            return weaponRepository.findByNameContaining(name);
+        }
+        if (type != null) {
+            return weaponRepository.findByTypeContaining(type);
+        }
+        if (requires != null) {
+            return weaponRepository.findByRequiresContaining(requires);
+        }
+        if (scaling != null) {
+            return weaponRepository.findByScalingContaining(scaling);
+        }
         return weaponRepository.findAll();
-    }
-
-    @Override
-    public Optional<Weapon> findById(Long id) {
-        return weaponRepository.findById(id);
-    }
-
-    @Override
-    public List<Weapon> search(Long id, String name, String type) {
-        return List.of();
     }
 
 

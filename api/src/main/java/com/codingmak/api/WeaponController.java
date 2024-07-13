@@ -9,15 +9,19 @@ import java.util.List;
 
 @RestController
 @RequestMapping("weapons")
-public class WeaponController implements BaseController<Weapon> {
+public class WeaponController {
 
     @Autowired
     private WeaponService weaponService;
 
-
-    @Override
-    public List<Weapon> search(Long id, String name, String type) {
-        return List.of();
+    @GetMapping
+    public List<Weapon> search(
+            @RequestParam(value = "id", required = false) Long id,
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "type", required = false) String type,
+            @RequestParam(value = "requires", required = false) String requires,
+            @RequestParam(value = "scaling", required = false) String scaling) {
+        return weaponService.search(id, name, type, requires, scaling);
     }
 
 
