@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/infoitems")
-public class InfoItemController {
+public class InfoItemController implements PpdInterface<InfoItem> {
 
     @Autowired
     private InfoItemService infoItemService;
@@ -22,18 +22,6 @@ public class InfoItemController {
         return infoItemService.search(id, name, type);
     }
 
-    /* @Override
-    public InfoItem update(Long id, InfoItem entity) {
-        InfoItem infoItem = infoItemService.findById(id)
-                .orElseThrow(() -> new RuntimeException("Info Item not found"));
-        infoItem.setName(entity.getName());
-        infoItem.setType(entity.getType());
-        infoItem.setDlc(entity.getDlc());
-        infoItem.setImage(entity.getImage());
-        infoItem.setInformation(entity.getInformation());
-        infoItem.setLocation(entity.getLocation());
-        return infoItemService.save(infoItem);
-    }
 
     @Override
     public InfoItem create(InfoItem entity) {
@@ -41,7 +29,12 @@ public class InfoItemController {
     }
 
     @Override
+    public InfoItem update(Long id, InfoItem entity) {
+        return infoItemService.update(id, entity);
+    }
+
+    @Override
     public void deleteById(Long id) {
         infoItemService.deleteById(id);
-    } */
+    }
 }

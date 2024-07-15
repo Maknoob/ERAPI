@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("ashes")
-public class AshesController {
+public class AshesController implements PpdInterface<Ashes> {
 
     @Autowired
     private AshesService ashesService;
@@ -21,19 +21,6 @@ public class AshesController {
         return ashesService.search(id, name);
     }
 
-    /* @Override
-    public Ashes update(Long id, Ashes entity) {
-        Ashes ashes = ashesService.findById(id)
-                .orElseThrow(() -> new RuntimeException("Ashes not found"));
-        ashes.setName(entity.getName());
-        ashes.setType(entity.getType());
-        ashes.setFpCost(entity.getFpCost());
-        ashes.setHpCost(entity.getHpCost());
-        ashes.setEffect(entity.getEffect());
-        ashes.setDlc(entity.getDlc());
-        ashes.setImage(entity.getImage());
-        return ashesService.save(ashes);
-    }
 
     @Override
     public Ashes create(Ashes entity) {
@@ -41,7 +28,12 @@ public class AshesController {
     }
 
     @Override
+    public Ashes update(Long id, Ashes entity) {
+        return ashesService.update(id, entity);
+    }
+
+    @Override
     public void deleteById(Long id) {
         ashesService.deleteById(id);
-    } */
+    }
 }

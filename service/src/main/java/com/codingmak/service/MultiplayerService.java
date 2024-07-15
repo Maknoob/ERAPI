@@ -13,7 +13,6 @@ public class MultiplayerService {
     @Autowired
     private MultiplayerRepository multiplayerRepository;
 
-
     public List<Multiplayer> search(Long id, String name, String type) {
         if (id != null) {
             return multiplayerRepository.findById(id).stream().toList();
@@ -27,14 +26,23 @@ public class MultiplayerService {
         return multiplayerRepository.findAll();
     }
 
-
-    /* @Override
     public Multiplayer save(Multiplayer entity) {
         return multiplayerRepository.save(entity);
     }
 
-    @Override
     public void deleteById(Long id) {
         multiplayerRepository.deleteById(id);
-    } */
+    }
+
+    public Multiplayer update(Long id, Multiplayer entity) {
+        Multiplayer multiplayer = multiplayerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Multiplayer Item not found"));
+        multiplayer.setName(entity.getName());
+        multiplayer.setType(entity.getType());
+        multiplayer.setDlc(entity.getDlc());
+        multiplayer.setImage(entity.getImage());
+        multiplayer.setWhenUsed(entity.getWhenUsed());
+        multiplayer.setLocation(entity.getLocation());
+        return save(multiplayer);
+    }
 }

@@ -27,14 +27,24 @@ public class CrystalTearService {
         return crystalTearRepository.findAll();
     }
 
-
-    /* @Override
     public CrystalTear save(CrystalTear entity) {
         return crystalTearRepository.save(entity);
     }
 
-    @Override
     public void deleteById(Long id) {
         crystalTearRepository.deleteById(id);
-    } */
+    }
+
+    public CrystalTear update(Long id, CrystalTear entity) {
+        CrystalTear crystalTear = crystalTearRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Crystal Tear not found."));
+        crystalTear.setName(entity.getName());
+        crystalTear.setType(entity.getType());
+        crystalTear.setDlc(entity.getDlc());
+        crystalTear.setImage(entity.getImage());
+        crystalTear.setLocation(entity.getLocation());
+        crystalTear.setDurationInSec(entity.getDurationInSec());
+        crystalTear.setWhenUsed(entity.getWhenUsed());
+        return save(crystalTear);
+    }
 }

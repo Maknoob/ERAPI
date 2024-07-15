@@ -24,13 +24,25 @@ public class AshesService {
     }
 
 
-    /* @Override
+
     public Ashes save(Ashes entity) {
         return ashesRepository.save(entity);
     }
 
-    @Override
     public void deleteById(Long id) {
         ashesRepository.deleteById(id);
-    } */
+    }
+
+    public Ashes update(Long id, Ashes entity) {
+        Ashes ashes = ashesRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Spirits Ashes not found"));
+        ashes.setName(entity.getName());
+        ashes.setType(entity.getType());
+        ashes.setFpCost(entity.getFpCost());
+        ashes.setHpCost(entity.getHpCost());
+        ashes.setEffect(entity.getEffect());
+        ashes.setDlc(entity.getDlc());
+        ashes.setImage(entity.getImage());
+        return save(ashes);
+    }
 }

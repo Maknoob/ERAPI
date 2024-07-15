@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InfoItemService {
 
     @Autowired
     private InfoItemRepository infoItemRepository;
-
 
     public List<InfoItem> search(Long id, String name, String type) {
         if (id != null) {
@@ -27,14 +27,23 @@ public class InfoItemService {
         return infoItemRepository.findAll();
     }
 
-
-    /* @Override
     public InfoItem save(InfoItem entity) {
         return infoItemRepository.save(entity);
     }
 
-    @Override
     public void deleteById(Long id) {
         infoItemRepository.deleteById(id);
-    } */
+    }
+
+    public InfoItem update(Long id, InfoItem entity) {
+        InfoItem infoItem = infoItemRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Info Item not found"));
+        infoItem.setName(entity.getName());
+        infoItem.setType(entity.getType());
+        infoItem.setDlc(entity.getDlc());
+        infoItem.setImage(entity.getImage());
+        infoItem.setInformation(entity.getInformation());
+        infoItem.setLocation(entity.getLocation());
+        return save(infoItem);
+    }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/ammunition")
-public class AmmunitionController {
+public class AmmunitionController implements PpdInterface<Ammunition> {
 
     @Autowired
     private AmmunitionService ammunitionService;
@@ -21,33 +21,18 @@ public class AmmunitionController {
         return ammunitionService.search(id, name);
     }
 
-
-    /* @Override
-    public Ammunition update(Long id, Ammunition entity) {
-        Ammunition ammunition = ammunitionService.findById(id)
-                .orElseThrow(() -> new RuntimeException("Ammunition not found."));
-        ammunition.setName(entity.getName());
-        ammunition.setType(entity.getType());
-        ammunition.setDlc(entity.getDlc());
-        ammunition.setImage(entity.getImage());
-        ammunition.setAttackPhy(entity.getAttackPhy());
-        ammunition.setAttackMag(entity.getAttackMag());
-        ammunition.setAttackFire(entity.getAttackFire());
-        ammunition.setAttackLigt(entity.getAttackLigt());
-        ammunition.setAttackHoly(entity.getAttackHoly());
-        ammunition.setAttackCrit(entity.getAttackCrit());
-        ammunition.setPassive(entity.getPassive());
-
-        return ammunitionService.save(ammunition);
-    }
-
     @Override
     public Ammunition create(Ammunition entity) {
         return ammunitionService.save(entity);
     }
 
     @Override
+    public Ammunition update(Long id, Ammunition entity) {
+        return ammunitionService.update(id, entity);
+    }
+
+    @Override
     public void deleteById(Long id) {
         ammunitionService.deleteById(id);
-    } */
+    }
 }

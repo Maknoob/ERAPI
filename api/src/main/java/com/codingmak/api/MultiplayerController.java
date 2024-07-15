@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/multiplayer")
-public class MultiplayerController {
+public class MultiplayerController implements PpdInterface<Multiplayer> {
 
     @Autowired
     private MultiplayerService multiplayerService;
@@ -23,26 +23,18 @@ public class MultiplayerController {
     }
 
 
-    /* @Override
-    public Multiplayer update(Long id, Multiplayer entity) {
-        Multiplayer multiplayer = multiplayerService.findById(id)
-                .orElseThrow(() -> new RuntimeException("Multiplayer Item not found"));
-        multiplayer.setName(entity.getName());
-        multiplayer.setType(entity.getType());
-        multiplayer.setDlc(entity.getDlc());
-        multiplayer.setImage(entity.getImage());
-        multiplayer.setWhenUsed(entity.getWhenUsed());
-        multiplayer.setLocation(entity.getLocation());
-        return multiplayerService.save(multiplayer);
-    }
-
     @Override
     public Multiplayer create(Multiplayer entity) {
         return multiplayerService.save(entity);
     }
 
     @Override
+    public Multiplayer update(Long id, Multiplayer entity) {
+        return multiplayerService.update(id, entity);
+    }
+
+    @Override
     public void deleteById(Long id) {
         multiplayerService.deleteById(id);
-    } */
+    }
 }

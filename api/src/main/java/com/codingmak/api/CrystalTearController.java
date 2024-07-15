@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/crystaltears")
-public class CrystalTearController {
+public class CrystalTearController implements PpdInterface<CrystalTear> {
 
     @Autowired
     private CrystalTearService crystalTearService;
@@ -23,27 +23,18 @@ public class CrystalTearController {
     }
 
 
-    /* @Override
-    public CrystalTear update(Long id, CrystalTear entity) {
-        CrystalTear crystalTear = crystalTearService.findById(id)
-                .orElseThrow(() -> new RuntimeException("Crystal Tear not found."));
-        crystalTear.setName(entity.getName());
-        crystalTear.setType(entity.getType());
-        crystalTear.setDlc(entity.getDlc());
-        crystalTear.setImage(entity.getImage());
-        crystalTear.setLocation(entity.getLocation());
-        crystalTear.setDurationInSec(entity.getDurationInSec());
-        crystalTear.setWhenUsed(entity.getWhenUsed());
-        return crystalTearService.save(crystalTear);
-    }
-
     @Override
     public CrystalTear create(CrystalTear entity) {
         return crystalTearService.save(entity);
     }
 
     @Override
+    public CrystalTear update(Long id, CrystalTear entity) {
+        return crystalTearService.update(id, entity);
+    }
+
+    @Override
     public void deleteById(Long id) {
         crystalTearService.deleteById(id);
-    } */
+    }
 }
