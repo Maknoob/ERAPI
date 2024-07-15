@@ -25,7 +25,7 @@ public class MultiplayerController implements PpdInterface<Multiplayer> {
 
     @Override
     public Multiplayer create(Multiplayer entity) {
-        return multiplayerService.save(entity);
+        return multiplayerService.create(entity);
     }
 
     @Override

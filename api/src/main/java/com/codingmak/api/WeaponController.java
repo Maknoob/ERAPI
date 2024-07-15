@@ -27,7 +27,7 @@ public class WeaponController implements PpdInterface<Weapon> {
 
     @Override
     public Weapon create(Weapon entity) {
-        return weaponService.save(entity);
+        return weaponService.create(entity);
     }
 
     @Override

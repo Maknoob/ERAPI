@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CrystalTearService {
@@ -25,6 +26,16 @@ public class CrystalTearService {
             return crystalTearRepository.findByTypeContaining(type);
         }
         return crystalTearRepository.findAll();
+    }
+
+    public CrystalTear create(CrystalTear entity) {
+        if (entity.getId() != null) {
+            Optional<CrystalTear> existingCrystalTear = crystalTearRepository.findById(entity.getId());
+            if (existingCrystalTear.isPresent()) {
+                throw new RuntimeException("Crystal Tear with ID " + entity.getId() + " already exists.");
+            }
+        }
+        return save(entity);
     }
 
     public CrystalTear save(CrystalTear entity) {

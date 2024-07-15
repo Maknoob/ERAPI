@@ -23,7 +23,7 @@ public class AmmunitionController implements PpdInterface<Ammunition> {
 
     @Override
     public Ammunition create(Ammunition entity) {
-        return ammunitionService.save(entity);
+        return ammunitionService.create(entity);
     }
 
     @Override

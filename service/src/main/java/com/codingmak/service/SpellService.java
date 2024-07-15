@@ -67,6 +67,16 @@ public class SpellService {
         return incantations;
     }
 
+    public Spell create(Spell entity) {
+        if (entity.getId() != null) {
+            Optional<Spell> existingSpell = spellRepository.findById(entity.getId());
+            if (existingSpell.isPresent()) {
+                throw new RuntimeException("Spell with ID " + entity.getId() + " already exists.");
+            }
+        }
+        return save(entity);
+    }
+
     public Spell save(Spell entity) {
             return spellRepository.save(entity);
     }

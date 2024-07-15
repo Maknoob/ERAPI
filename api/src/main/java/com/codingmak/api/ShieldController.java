@@ -28,7 +28,7 @@ public class ShieldController implements PpdInterface<Shield> {
 
     @Override
     public Shield create(Shield entity) {
-        return shieldService.save(entity);
+        return shieldService.create(entity);
     }
 
     @Override

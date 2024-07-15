@@ -33,6 +33,16 @@ public class WeaponService {
         return weaponRepository.findAll();
     }
 
+    public Weapon create(Weapon entity) {
+        if (entity.getId() != null) {
+            Optional<Weapon> existingWeapon = weaponRepository.findById(entity.getId());
+            if (existingWeapon.isPresent()) {
+                throw new RuntimeException("Weapon with ID " + entity.getId() + " already exists.");
+            }
+        }
+        return save(entity);
+    }
+
     public Weapon save(Weapon entity) {
         return weaponRepository.save(entity);
     }

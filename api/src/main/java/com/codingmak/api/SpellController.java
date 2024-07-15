@@ -41,7 +41,7 @@ public class SpellController implements PpdInterface<Spell> {
 
     @Override
     public Spell create(Spell entity) {
-        return spellService.save(entity);
+        return spellService.create(entity);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class InfoItemController implements PpdInterface<InfoItem> {
 
     @Override
     public InfoItem create(InfoItem entity) {
-        return infoItemService.save(entity);
+        return infoItemService.create(entity);
     }
 
     @Override

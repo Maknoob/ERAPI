@@ -24,7 +24,7 @@ public class AshesController implements PpdInterface<Ashes> {
 
     @Override
     public Ashes create(Ashes entity) {
-        return ashesService.save(entity);
+        return ashesService.create(entity);
     }
 
     @Override

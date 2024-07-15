@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AmmunitionService {
@@ -24,6 +25,15 @@ public class AmmunitionService {
         return ammunitionRepository.findAll();
     }
 
+    public Ammunition create(Ammunition entity) {
+        if (entity.getId() != null) {
+            Optional<Ammunition> existingAmmunition = ammunitionRepository.findById(entity.getId());
+            if (existingAmmunition.isPresent()) {
+                throw new RuntimeException("Ammunition with ID " + entity.getId() + " already exists.");
+            }
+        }
+        return save(entity);
+    }
 
     public Ammunition save(Ammunition entity) {
         return ammunitionRepository.save(entity);

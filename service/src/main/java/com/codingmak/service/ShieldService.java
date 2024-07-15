@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShieldService {
@@ -31,6 +32,16 @@ public class ShieldService {
             return shieldRepository.findByScalingContaining(scaling);
         }
         return shieldRepository.findAll();
+    }
+
+    public Shield create(Shield entity) {
+        if (entity.getId() != null) {
+            Optional<Shield> existingShield = shieldRepository.findById(entity.getId());
+            if (existingShield.isPresent()) {
+                throw new RuntimeException("Shield with ID " + entity.getId() + " already exists.");
+            }
+        }
+        return save(entity);
     }
 
     public Shield save(Shield entity) {

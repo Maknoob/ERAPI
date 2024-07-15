@@ -25,7 +25,7 @@ public class CrystalTearController implements PpdInterface<CrystalTear> {
 
     @Override
     public CrystalTear create(CrystalTear entity) {
-        return crystalTearService.save(entity);
+        return crystalTearService.create(entity);
     }
 
     @Override

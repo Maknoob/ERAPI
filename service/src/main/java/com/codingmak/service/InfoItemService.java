@@ -27,6 +27,16 @@ public class InfoItemService {
         return infoItemRepository.findAll();
     }
 
+    public InfoItem create(InfoItem entity) {
+        if (entity.getId() != null) {
+            Optional<InfoItem> existingInfoItem = infoItemRepository.findById(entity.getId());
+            if (existingInfoItem.isPresent()) {
+                throw new RuntimeException("Crystal Tear with ID " + entity.getId() + " already exists.");
+            }
+        }
+        return save(entity);
+    }
+
     public InfoItem save(InfoItem entity) {
         return infoItemRepository.save(entity);
     }
