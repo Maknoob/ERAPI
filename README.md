@@ -10,6 +10,7 @@ This project is an API for the game Elden Ring, created as part of my learning j
 
 - **Database**: ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=flat&logo=mariadb&logoColor=white)
 - **Backend**: ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=flat&logo=openjdk&logoColor=white) ![Apache Maven](https://img.shields.io/badge/Apache%20Maven-C71A36?style=flat&logo=Apache%20Maven&logoColor=white)
+- **Frontend**: ![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=flat&logo=vuedotjs&logoColor=%234FC08D) ![Static Badge](https://img.shields.io/badge/docusaurus-green)
 - **Hosting**: ![IONOS](https://img.shields.io/badge/IONOS-00F) ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=flat&logo=ubuntu&logoColor=white) ![Apache](https://img.shields.io/badge/apache-%23D42029.svg?style=flat&logo=apache&logoColor=white)
 
 ## Disclaimer
@@ -34,32 +35,14 @@ The images used in this project have been provided by the Reddit user Erigondo, 
 ## Usage
 
 You can access the current version by visiting: [Elden Ring - API](https://er.codingmak.com).
-You can also use the [Documentation](https://erdoc.codingmak.com), but it is still under construction.
 
-The API provides the following endpoints:
-
-`
-GET /ashes | /shields | /weapons | /multiplayer | /infoitems | /ammunition -
-Retrieves all Ashes currently available in the database.
-`
-
-`
-GET /ashes/search?id={id} -
-Retrieves the item with the specified ID.
-`
-
-
-**To display images, use the following endpoint:**
-
-`
-GET /images/{filename}
-`
+For available endpoints and usage instructions, visit my [Documentation](https://erdoc.codingmak.com).
 
 I am continuously updating this project to provide more data and features in the future.
 
 ## Contributing
 
-I welcome any bug reports or suggestions for improvements. However, please note that I do not accept pull requests. Feel free to open an issue or send a detailed description of the problem or suggestion.
+I welcome any bug reports or suggestions for improvements. However, please note that I do not accept pull requests since this is just a fan project to get better with coding and learning new things. Feel free to open an issue or send a detailed description of the problem or suggestion.
 
 ## Contact
 
