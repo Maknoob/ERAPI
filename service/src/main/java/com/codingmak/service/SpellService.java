@@ -15,14 +15,6 @@ public class SpellService {
     @Autowired
     private SpellRepository spellRepository;
 
-    public List<Spell> findAll() {
-        return spellRepository.findAll();
-    }
-
-    public Optional<Spell> findById(Long id) {
-        return spellRepository.findById(id);
-    }
-
     public List<Spell> search(Long id, String name, String type, String bonus) {
         if (id != null) {
             return spellRepository.findById(id).stream().toList();
@@ -31,13 +23,13 @@ public class SpellService {
             return spellRepository.findByNameAndType(name, type);
         }
         if (name != null) {
-            return spellRepository.findByName(name);
+            return spellRepository.findByNameContaining(name);
         }
         if (type != null) {
             return spellRepository.findByType(type);
         }
         if (bonus != null) {
-            return spellRepository.findByBonus(bonus);
+            return spellRepository.findByBonusContaining(bonus);
         }
 
         return spellRepository.findAll();
@@ -75,16 +67,28 @@ public class SpellService {
         return incantations;
     }
 
-
-
-
-    /* @Override
     public Spell save(Spell entity) {
             return spellRepository.save(entity);
     }
 
-    @Override
+    public Spell update(Long id, Spell entity) {
+        Spell spell = spellRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Spell not found"));
+        spell.setName(entity.getName());
+        spell.setType(entity.getType());
+        spell.setDlc(entity.getDlc());
+        spell.setImage(entity.getImage());
+        spell.setBonus(entity.getBonus());
+        spell.setEffect(entity.getEffect());
+        spell.setFpCost(entity.getFpCost());
+        spell.setSlot(entity.getSlot());
+        spell.setLocation(entity.getLocation());
+        spell.setRequiredStats(entity.getRequiredStats());
+        spell.setStaminaCost(entity.getStaminaCost());
+        return save(spell);
+    }
+
     public void deleteById(Long id) {
         spellRepository.deleteById(id);
-    } */
+    }
 }

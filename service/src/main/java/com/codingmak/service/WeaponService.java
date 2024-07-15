@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WeaponService {
@@ -32,14 +33,37 @@ public class WeaponService {
         return weaponRepository.findAll();
     }
 
-
-    /* @Override
     public Weapon save(Weapon entity) {
         return weaponRepository.save(entity);
     }
 
-    @Override
+    public Weapon update(Long id, Weapon entity) {
+        Weapon weapon = weaponRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Weapon not Found"));
+        weapon.setName(entity.getName());
+        weapon.setType(entity.getType());
+        weapon.setDlc(entity.getDlc());
+        weapon.setImage(entity.getImage());
+        weapon.setRequires(entity.getRequires());
+        weapon.setScaling(entity.getScaling());
+        weapon.setSkill(entity.getSkill());
+        weapon.setWeight(entity.getWeight());
+        weapon.setAttackPhy(entity.getAttackPhy());
+        weapon.setAttackMag(entity.getAttackMag());
+        weapon.setAttackFire(entity.getAttackFire());
+        weapon.setAttackLigt(entity.getAttackLigt());
+        weapon.setAttackHoly(entity.getAttackHoly());
+        weapon.setAttackCrit(entity.getAttackCrit());
+        weapon.setGuardPhy(entity.getGuardPhy());
+        weapon.setGuardMag(entity.getGuardMag());
+        weapon.setGuardFire(entity.getGuardFire());
+        weapon.setGuardLigt(entity.getGuardLigt());
+        weapon.setGuardHoly(entity.getGuardHoly());
+        weapon.setGuardBoost(entity.getGuardBoost());
+        return save(weapon);
+    }
+
     public void deleteById(Long id) {
         weaponRepository.deleteById(id);
-    } */
+    }
 }

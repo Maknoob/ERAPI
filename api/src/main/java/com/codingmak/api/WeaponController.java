@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("weapons")
-public class WeaponController {
+public class WeaponController implements PpdInterface<Weapon> {
 
     @Autowired
     private WeaponService weaponService;
@@ -25,40 +25,18 @@ public class WeaponController {
     }
 
 
-    /* @Override
-    public Weapon update(Long id, Weapon entity) {
-        Weapon weapon = weaponService.findById(id)
-                .orElseThrow(() -> new RuntimeException("Weapon not Found"));
-        weapon.setName(entity.getName());
-        weapon.setType(entity.getType());
-        weapon.setDlc(entity.getDlc());
-        weapon.setImage(entity.getImage());
-        weapon.setRequires(entity.getRequires());
-        weapon.setScaling(entity.getScaling());
-        weapon.setSkill(entity.getSkill());
-        weapon.setWeight(entity.getWeight());
-        weapon.setAttackPhy(entity.getAttackPhy());
-        weapon.setAttackMag(entity.getAttackMag());
-        weapon.setAttackFire(entity.getAttackFire());
-        weapon.setAttackLigt(entity.getAttackLigt());
-        weapon.setAttackHoly(entity.getAttackHoly());
-        weapon.setAttackCrit(entity.getAttackCrit());
-        weapon.setGuardPhy(entity.getGuardPhy());
-        weapon.setGuardMag(entity.getGuardMag());
-        weapon.setGuardFire(entity.getGuardFire());
-        weapon.setGuardLigt(entity.getGuardLigt());
-        weapon.setGuardHoly(entity.getGuardHoly());
-        weapon.setGuardBoost(entity.getGuardBoost());
-        return weaponService.save(weapon);
-    }
-
     @Override
     public Weapon create(Weapon entity) {
         return weaponService.save(entity);
     }
 
     @Override
+    public Weapon update(Long id, Weapon entity) {
+        return weaponService.update(id, entity);
+    }
+
+    @Override
     public void deleteById(Long id) {
         weaponService.deleteById(id);
-    } */
+    }
 }
