@@ -19,10 +19,8 @@ public class ShieldController implements PpdInterface<Shield> {
     public List<Shield> search(
             @RequestParam(value = "id", required = false) Long id,
             @RequestParam(value = "name", required = false) String name,
-            @RequestParam(value = "type", required = false) String type,
-            @RequestParam(value = "requires", required = false) String requires,
-            @RequestParam(value = "scaling", required = false) String scaling) {
-        return shieldService.search(id, name, type, requires, scaling);
+            @RequestParam(value = "type", required = false) String type) {
+        return shieldService.search(id, name, type);
     }
 
 
