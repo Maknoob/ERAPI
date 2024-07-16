@@ -1,45 +1,27 @@
 package com.codingmak.model;
 
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 
 @Entity
 public class Shield extends BaseItem {
 
-    private String requires;
-    private String scaling;
     private String passive;
     private int fpCost;
     private double weight;
     private String parrySkill;
-    private int attackPhy;
-    private int attackMag;
-    private int attackFire;
-    private int attackLigt;
-    private int attackHoly;
-    private int attackCrit;
-    private int guardPhy;
-    private int guardMag;
-    private int guardFire;
-    private int guardLigt;
-    private int guardHoly;
-    private int guardBoost;
 
+    @Embedded
+    private Require require;
 
-    public String getRequires() {
-        return requires;
-    }
+    @Embedded
+    private Scaling scaling;
 
-    public void setRequires(String requires) {
-        this.requires = requires;
-    }
+    @Embedded
+    private Attack attack;
 
-    public String getScaling() {
-        return scaling;
-    }
-
-    public void setScaling(String scaling) {
-        this.scaling = scaling;
-    }
+    @Embedded
+    private Guard guard;
 
     public String getPassive() {
         return passive;
@@ -73,99 +55,35 @@ public class Shield extends BaseItem {
         this.parrySkill = parrySkill;
     }
 
-    public int getAttackPhy() {
-        return attackPhy;
+    public Require getRequire() {
+        return require;
     }
 
-    public void setAttackPhy(int attackPhy) {
-        this.attackPhy = attackPhy;
+    public void setRequire(Require require) {
+        this.require = require;
     }
 
-    public int getAttackMag() {
-        return attackMag;
+    public Scaling getScaling() {
+        return scaling;
     }
 
-    public void setAttackMag(int attackMag) {
-        this.attackMag = attackMag;
+    public void setScaling(Scaling scaling) {
+        this.scaling = scaling;
     }
 
-    public int getAttackFire() {
-        return attackFire;
+    public Attack getAttack() {
+        return attack;
     }
 
-    public void setAttackFire(int attackFire) {
-        this.attackFire = attackFire;
+    public void setAttack(Attack attack) {
+        this.attack = attack;
     }
 
-    public int getAttackLigt() {
-        return attackLigt;
+    public Guard getGuard() {
+        return guard;
     }
 
-    public void setAttackLigt(int attackLigt) {
-        this.attackLigt = attackLigt;
-    }
-
-    public int getAttackHoly() {
-        return attackHoly;
-    }
-
-    public void setAttackHoly(int attackHoly) {
-        this.attackHoly = attackHoly;
-    }
-
-    public int getAttackCrit() {
-        return attackCrit;
-    }
-
-    public void setAttackCrit(int attackCrit) {
-        this.attackCrit = attackCrit;
-    }
-
-    public int getGuardPhy() {
-        return guardPhy;
-    }
-
-    public void setGuardPhy(int guardPhy) {
-        this.guardPhy = guardPhy;
-    }
-
-    public int getGuardMag() {
-        return guardMag;
-    }
-
-    public void setGuardMag(int guardMag) {
-        this.guardMag = guardMag;
-    }
-
-    public int getGuardFire() {
-        return guardFire;
-    }
-
-    public void setGuardFire(int guardFire) {
-        this.guardFire = guardFire;
-    }
-
-    public int getGuardLigt() {
-        return guardLigt;
-    }
-
-    public void setGuardLigt(int guardLigt) {
-        this.guardLigt = guardLigt;
-    }
-
-    public int getGuardHoly() {
-        return guardHoly;
-    }
-
-    public void setGuardHoly(int guardHoly) {
-        this.guardHoly = guardHoly;
-    }
-
-    public int getGuardBoost() {
-        return guardBoost;
-    }
-
-    public void setGuardBoost(int guardBoost) {
-        this.guardBoost = guardBoost;
+    public void setGuard(Guard guard) {
+        this.guard = guard;
     }
 }
