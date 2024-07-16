@@ -1,5 +1,6 @@
 package com.codingmak.service;
 
+import com.codingmak.model.Require;
 import com.codingmak.model.Spell;
 import com.codingmak.repositories.SpellRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,8 +94,17 @@ public class SpellService {
         spell.setFpCost(entity.getFpCost());
         spell.setSlot(entity.getSlot());
         spell.setLocation(entity.getLocation());
-        spell.setRequiredStats(entity.getRequiredStats());
         spell.setStaminaCost(entity.getStaminaCost());
+
+        if (spell.getRequire() == null) {
+            spell.setRequire(new Require());
+        }
+        spell.getRequire().setStrength(entity.getRequire().getStrength());
+        spell.getRequire().setDexterity(entity.getRequire().getDexterity());
+        spell.getRequire().setIntelligence(entity.getRequire().getIntelligence());
+        spell.getRequire().setFaith(entity.getRequire().getFaith());
+        spell.getRequire().setArcane(entity.getRequire().getArcane());
+
         return save(spell);
     }
 
