@@ -1,6 +1,7 @@
 package com.codingmak.service;
 
 import com.codingmak.model.Ammunition;
+import com.codingmak.model.Attack;
 import com.codingmak.repositories.AmmunitionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,13 +51,18 @@ public class AmmunitionService {
         ammunition.setType(entity.getType());
         ammunition.setDlc(entity.getDlc());
         ammunition.setImage(entity.getImage());
-        ammunition.setAttackPhy(entity.getAttackPhy());
-        ammunition.setAttackMag(entity.getAttackMag());
-        ammunition.setAttackFire(entity.getAttackFire());
-        ammunition.setAttackLigt(entity.getAttackLigt());
-        ammunition.setAttackHoly(entity.getAttackHoly());
-        ammunition.setAttackCrit(entity.getAttackCrit());
         ammunition.setPassive(entity.getPassive());
+
+        if (ammunition.getAttack() == null) {
+            ammunition.setAttack(new Attack());
+        }
+        ammunition.getAttack().setPhysical(entity.getAttack().getPhysical());
+        ammunition.getAttack().setMagical(entity.getAttack().getMagical());
+        ammunition.getAttack().setFire(entity.getAttack().getFire());
+        ammunition.getAttack().setLightning(entity.getAttack().getLightning());
+        ammunition.getAttack().setHoly(entity.getAttack().getHoly());
+        ammunition.getAttack().setCritical(entity.getAttack().getCritical());
+
         return save(ammunition);
     }
 }
