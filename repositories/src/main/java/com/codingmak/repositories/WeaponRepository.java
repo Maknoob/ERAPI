@@ -8,6 +8,4 @@ import java.util.List;
 public interface WeaponRepository extends JpaRepository<Weapon, Long> {
     List<Weapon> findByNameContaining(String name);
     List<Weapon> findByTypeContaining(String type);
-    List<Weapon> findByRequiresContaining(String requires);
-    List<Weapon> findByScalingContaining(String scaling);
 }
