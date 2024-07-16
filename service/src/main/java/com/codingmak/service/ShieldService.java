@@ -1,6 +1,6 @@
 package com.codingmak.service;
 
-import com.codingmak.model.Shield;
+import com.codingmak.model.*;
 import com.codingmak.repositories.ShieldRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class ShieldService {
     private ShieldRepository shieldRepository;
 
 
-    public List<Shield> search(Long id, String name, String type, String requires, String scaling) {
+    public List<Shield> search(Long id, String name, String type) {
         if (id != null) {
             return shieldRepository.findById(id).stream().toList();
         }
@@ -24,12 +24,6 @@ public class ShieldService {
         }
         if (type != null) {
             return shieldRepository.findByTypeContaining(type);
-        }
-        if (requires != null) {
-            return shieldRepository.findByRequiresContaining(requires);
-        }
-        if (scaling != null) {
-            return shieldRepository.findByScalingContaining(scaling);
         }
         return shieldRepository.findAll();
     }
@@ -53,24 +47,49 @@ public class ShieldService {
                 .orElseThrow(() -> new RuntimeException("Shield not Found"));
         shield.setName(entity.getName());
         shield.setType(entity.getType());
-        shield.setRequires(entity.getRequires());
-        shield.setScaling(entity.getScaling());
         shield.setPassive(entity.getPassive());
         shield.setFpCost(entity.getFpCost());
         shield.setWeight(entity.getWeight());
         shield.setParrySkill(entity.getParrySkill());
-        shield.setAttackPhy(entity.getAttackPhy());
-        shield.setAttackMag(entity.getAttackMag());
-        shield.setAttackFire(entity.getAttackFire());
-        shield.setAttackLigt(entity.getAttackLigt());
-        shield.setAttackHoly(entity.getAttackHoly());
-        shield.setAttackCrit(entity.getAttackCrit());
-        shield.setGuardPhy(entity.getGuardPhy());
-        shield.setGuardMag(entity.getGuardMag());
-        shield.setGuardFire(entity.getGuardFire());
-        shield.setGuardLigt(entity.getGuardLigt());
-        shield.setGuardHoly(entity.getGuardHoly());
-        shield.setGuardBoost(entity.getGuardBoost());
+
+        if (shield.getAttack() == null) {
+            shield.setAttack(new Attack());
+        }
+        shield.getAttack().setPhysical(entity.getAttack().getPhysical());
+        shield.getAttack().setMagical(entity.getAttack().getMagical());
+        shield.getAttack().setFire(entity.getAttack().getFire());
+        shield.getAttack().setLightning(entity.getAttack().getLightning());
+        shield.getAttack().setHoly(entity.getAttack().getHoly());
+        shield.getAttack().setCritical(entity.getAttack().getCritical());
+
+        if (shield.getGuard() == null) {
+            shield.setGuard(new Guard());
+        }
+        shield.getGuard().setPhysical(entity.getGuard().getPhysical());
+        shield.getGuard().setMagical(entity.getGuard().getMagical());
+        shield.getGuard().setFire(entity.getGuard().getFire());
+        shield.getGuard().setLightning(entity.getGuard().getLightning());
+        shield.getGuard().setHoly(entity.getGuard().getHoly());
+        shield.getGuard().setBoost(entity.getGuard().getBoost());
+
+        if (shield.getRequire() == null) {
+            shield.setRequire(new Require());
+        }
+        shield.getRequire().setStrength(entity.getRequire().getStrength());
+        shield.getRequire().setDexterity(entity.getRequire().getDexterity());
+        shield.getRequire().setIntelligence(entity.getRequire().getIntelligence());
+        shield.getRequire().setFaith(entity.getRequire().getFaith());
+        shield.getRequire().setArcane(entity.getRequire().getArcane());
+
+        if (shield.getScaling() == null) {
+            shield.setScaling(new Scaling());
+        }
+        shield.getScaling().setStrength(entity.getScaling().getStrength());
+        shield.getScaling().setDexterity(entity.getScaling().getDexterity());
+        shield.getScaling().setIntelligence(entity.getScaling().getIntelligence());
+        shield.getScaling().setFaith(entity.getScaling().getFaith());
+        shield.getScaling().setArcane(entity.getScaling().getArcane());
+        
         return save(shield);
     }
 
