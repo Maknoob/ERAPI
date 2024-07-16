@@ -1,6 +1,7 @@
 package com.codingmak.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 
 @Entity
@@ -8,9 +9,13 @@ public class Spell extends BaseItem {
     private int slot;
     private int fpCost;
     private int staminaCost;
-    private String requiredStats;
+
+    @Embedded
+    private Require require;
+
     private String effect;
     private String bonus;
+
     @Column(columnDefinition = "LONGTEXT")
     private String location;
 
@@ -38,12 +43,12 @@ public class Spell extends BaseItem {
         this.staminaCost = staminaCost;
     }
 
-    public String getRequiredStats() {
-        return requiredStats;
+    public Require getRequire() {
+        return require;
     }
 
-    public void setRequiredStats(String requiredStats) {
-        this.requiredStats = requiredStats;
+    public void setRequire(Require require) {
+        this.require = require;
     }
 
     public String getEffect() {
