@@ -18,10 +18,8 @@ public class WeaponController implements PpdInterface<Weapon> {
     public List<Weapon> search(
             @RequestParam(value = "id", required = false) Long id,
             @RequestParam(value = "name", required = false) String name,
-            @RequestParam(value = "type", required = false) String type,
-            @RequestParam(value = "requires", required = false) String requires,
-            @RequestParam(value = "scaling", required = false) String scaling) {
-        return weaponService.search(id, name, type, requires, scaling);
+            @RequestParam(value = "type", required = false) String type) {
+        return weaponService.search(id, name, type);
     }
 
 
