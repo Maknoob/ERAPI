@@ -1,6 +1,6 @@
 package com.codingmak.service;
 
-import com.codingmak.model.Weapon;
+import com.codingmak.model.*;
 import com.codingmak.repositories.WeaponRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ public class WeaponService {
     @Autowired
     private WeaponRepository weaponRepository;
 
-    public List<Weapon> search(Long id, String name, String type, String requires, String scaling) {
+    public List<Weapon> search(Long id, String name, String type) {
         if (id != null) {
             return weaponRepository.findById(id).stream().toList();
         }
@@ -23,12 +23,6 @@ public class WeaponService {
         }
         if (type != null) {
             return weaponRepository.findByTypeContaining(type);
-        }
-        if (requires != null) {
-            return weaponRepository.findByRequiresContaining(requires);
-        }
-        if (scaling != null) {
-            return weaponRepository.findByScalingContaining(scaling);
         }
         return weaponRepository.findAll();
     }
@@ -54,22 +48,47 @@ public class WeaponService {
         weapon.setType(entity.getType());
         weapon.setDlc(entity.getDlc());
         weapon.setImage(entity.getImage());
-        weapon.setRequires(entity.getRequires());
-        weapon.setScaling(entity.getScaling());
         weapon.setSkill(entity.getSkill());
         weapon.setWeight(entity.getWeight());
-        weapon.setAttackPhy(entity.getAttackPhy());
-        weapon.setAttackMag(entity.getAttackMag());
-        weapon.setAttackFire(entity.getAttackFire());
-        weapon.setAttackLigt(entity.getAttackLigt());
-        weapon.setAttackHoly(entity.getAttackHoly());
-        weapon.setAttackCrit(entity.getAttackCrit());
-        weapon.setGuardPhy(entity.getGuardPhy());
-        weapon.setGuardMag(entity.getGuardMag());
-        weapon.setGuardFire(entity.getGuardFire());
-        weapon.setGuardLigt(entity.getGuardLigt());
-        weapon.setGuardHoly(entity.getGuardHoly());
-        weapon.setGuardBoost(entity.getGuardBoost());
+
+        if (weapon.getAttack() == null) {
+            weapon.setAttack(new Attack());
+        }
+        weapon.getAttack().setPhysical(entity.getAttack().getPhysical());
+        weapon.getAttack().setMagical(entity.getAttack().getMagical());
+        weapon.getAttack().setFire(entity.getAttack().getFire());
+        weapon.getAttack().setLightning(entity.getAttack().getLightning());
+        weapon.getAttack().setHoly(entity.getAttack().getHoly());
+        weapon.getAttack().setCritical(entity.getAttack().getCritical());
+
+        if (weapon.getGuard() == null) {
+            weapon.setGuard(new Guard());
+        }
+        weapon.getGuard().setPhysical(entity.getGuard().getPhysical());
+        weapon.getGuard().setMagical(entity.getGuard().getMagical());
+        weapon.getGuard().setFire(entity.getGuard().getFire());
+        weapon.getGuard().setLightning(entity.getGuard().getLightning());
+        weapon.getGuard().setHoly(entity.getGuard().getHoly());
+        weapon.getGuard().setBoost(entity.getGuard().getBoost());
+
+        if (weapon.getRequire() == null) {
+            weapon.setRequire(new Require());
+        }
+        weapon.getRequire().setStrength(entity.getRequire().getStrength());
+        weapon.getRequire().setDexterity(entity.getRequire().getDexterity());
+        weapon.getRequire().setIntelligence(entity.getRequire().getIntelligence());
+        weapon.getRequire().setFaith(entity.getRequire().getFaith());
+        weapon.getRequire().setArcane(entity.getRequire().getArcane());
+
+        if (weapon.getScaling() == null) {
+            weapon.setScaling(new Scaling());
+        }
+        weapon.getScaling().setStrength(entity.getScaling().getStrength());
+        weapon.getScaling().setDexterity(entity.getScaling().getDexterity());
+        weapon.getScaling().setIntelligence(entity.getScaling().getIntelligence());
+        weapon.getScaling().setFaith(entity.getScaling().getFaith());
+        weapon.getScaling().setArcane(entity.getScaling().getArcane());
+
         return save(weapon);
     }
 
