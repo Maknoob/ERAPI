@@ -4,13 +4,13 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "SPIRITSASHES")
-public class Ashes extends BaseItem {
+public class Spiritsash extends BaseItem {
 
     private int fpCost;
     private int hpCost;
     private String effect;
 
-    public Ashes() { }
+    public Spiritsash() { }
 
     public int getFpCost() {
         return fpCost;
