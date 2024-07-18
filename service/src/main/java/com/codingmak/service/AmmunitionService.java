@@ -15,6 +15,9 @@ public class AmmunitionService {
     @Autowired
     private AmmunitionRepository ammunitionRepository;
 
+    @Autowired
+    private UniqueIdChecker uniqueIdChecker;
+
 
     public List<Ammunition> search(Long id, String name) {
         if (id != null) {
@@ -28,10 +31,7 @@ public class AmmunitionService {
 
     public Ammunition create(Ammunition entity) {
         if (entity.getId() != null) {
-            Optional<Ammunition> existingAmmunition = ammunitionRepository.findById(entity.getId());
-            if (existingAmmunition.isPresent()) {
-                throw new RuntimeException("Ammunition with ID " + entity.getId() + " already exists.");
-            }
+            uniqueIdChecker.checkUniqueId(entity.getId());
         }
         return save(entity);
     }

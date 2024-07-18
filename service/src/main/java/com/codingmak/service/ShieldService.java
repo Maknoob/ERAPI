@@ -14,6 +14,9 @@ public class ShieldService {
     @Autowired
     private ShieldRepository shieldRepository;
 
+    @Autowired
+    private UniqueIdChecker uniqueIdChecker;
+
 
     public List<Shield> search(Long id, String name, String type) {
         if (id != null) {
@@ -30,10 +33,7 @@ public class ShieldService {
 
     public Shield create(Shield entity) {
         if (entity.getId() != null) {
-            Optional<Shield> existingShield = shieldRepository.findById(entity.getId());
-            if (existingShield.isPresent()) {
-                throw new RuntimeException("Shield with ID " + entity.getId() + " already exists.");
-            }
+            uniqueIdChecker.checkUniqueId(entity.getId());
         }
         return save(entity);
     }

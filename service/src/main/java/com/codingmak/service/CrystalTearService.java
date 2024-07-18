@@ -14,6 +14,9 @@ public class CrystalTearService {
     @Autowired
     private CrystalTearRepository crystalTearRepository;
 
+    @Autowired
+    private UniqueIdChecker uniqueIdChecker;
+
 
     public List<CrystalTear> search(Long id, String name, String type) {
         if (id != null) {
@@ -30,10 +33,7 @@ public class CrystalTearService {
 
     public CrystalTear create(CrystalTear entity) {
         if (entity.getId() != null) {
-            Optional<CrystalTear> existingCrystalTear = crystalTearRepository.findById(entity.getId());
-            if (existingCrystalTear.isPresent()) {
-                throw new RuntimeException("Crystal Tear with ID " + entity.getId() + " already exists.");
-            }
+            uniqueIdChecker.checkUniqueId(entity.getId());
         }
         return save(entity);
     }

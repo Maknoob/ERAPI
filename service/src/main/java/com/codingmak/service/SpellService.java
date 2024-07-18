@@ -16,6 +16,9 @@ public class SpellService {
     @Autowired
     private SpellRepository spellRepository;
 
+    @Autowired
+    private UniqueIdChecker uniqueIdChecker;
+
     public List<Spell> search(Long id, String name, String type, String bonus) {
         if (id != null) {
             return spellRepository.findById(id).stream().toList();
@@ -70,10 +73,7 @@ public class SpellService {
 
     public Spell create(Spell entity) {
         if (entity.getId() != null) {
-            Optional<Spell> existingSpell = spellRepository.findById(entity.getId());
-            if (existingSpell.isPresent()) {
-                throw new RuntimeException("Spell with ID " + entity.getId() + " already exists.");
-            }
+            uniqueIdChecker.checkUniqueId(entity.getId());
         }
         return save(entity);
     }

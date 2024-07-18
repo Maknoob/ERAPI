@@ -14,6 +14,9 @@ public class MultiplayerService {
     @Autowired
     private MultiplayerRepository multiplayerRepository;
 
+    @Autowired
+    private UniqueIdChecker uniqueIdChecker;
+
     public List<Multiplayer> search(Long id, String name, String type) {
         if (id != null) {
             return multiplayerRepository.findById(id).stream().toList();
@@ -29,10 +32,7 @@ public class MultiplayerService {
 
     public Multiplayer create(Multiplayer entity) {
         if (entity.getId() != null) {
-            Optional<Multiplayer> existingMultiplayer = multiplayerRepository.findById(entity.getId());
-            if (existingMultiplayer.isPresent()) {
-                throw new RuntimeException("Multiplayer Item with ID " + entity.getId() + " already exists.");
-            }
+            uniqueIdChecker.checkUniqueId(entity.getId());
         }
         return save(entity);
     }

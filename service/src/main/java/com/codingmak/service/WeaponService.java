@@ -14,6 +14,9 @@ public class WeaponService {
     @Autowired
     private WeaponRepository weaponRepository;
 
+    @Autowired
+    private UniqueIdChecker uniqueIdChecker;
+
     public List<Weapon> search(Long id, String name, String type) {
         if (id != null) {
             return weaponRepository.findById(id).stream().toList();
@@ -29,10 +32,7 @@ public class WeaponService {
 
     public Weapon create(Weapon entity) {
         if (entity.getId() != null) {
-            Optional<Weapon> existingWeapon = weaponRepository.findById(entity.getId());
-            if (existingWeapon.isPresent()) {
-                throw new RuntimeException("Weapon with ID " + entity.getId() + " already exists.");
-            }
+            uniqueIdChecker.checkUniqueId(entity.getId());
         }
         return save(entity);
     }
@@ -49,6 +49,7 @@ public class WeaponService {
         weapon.setDlc(entity.getDlc());
         weapon.setImage(entity.getImage());
         weapon.setSkill(entity.getSkill());
+        weapon.setFpCost(entity.getFpCost());
         weapon.setWeight(entity.getWeight());
 
         if (weapon.getAttack() == null) {

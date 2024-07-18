@@ -14,6 +14,9 @@ public class TalismanService {
     @Autowired
     private TalismanRepository talismanRepository;
 
+    @Autowired
+    private UniqueIdChecker uniqueIdChecker;
+
     public List<Talisman> search(Long id, String name) {
         if (id != null) {
             return talismanRepository.findById(id).stream().toList();
@@ -26,10 +29,7 @@ public class TalismanService {
 
     public Talisman create(Talisman entity) {
         if (entity.getId() != null) {
-            Optional<Talisman> existingTalisman = talismanRepository.findById(entity.getId());
-            if (existingTalisman.isPresent()) {
-                throw new RuntimeException("Talisman with ID " + entity.getId() + " already exists.");
-            }
+            uniqueIdChecker.checkUniqueId(entity.getId());
         }
         return save(entity);
     }

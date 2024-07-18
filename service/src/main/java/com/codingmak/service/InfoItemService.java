@@ -14,6 +14,9 @@ public class InfoItemService {
     @Autowired
     private InfoItemRepository infoItemRepository;
 
+    @Autowired
+    private UniqueIdChecker uniqueIdChecker;
+
     public List<InfoItem> search(Long id, String name, String type) {
         if (id != null) {
             return infoItemRepository.findById(id).stream().toList();
@@ -29,10 +32,7 @@ public class InfoItemService {
 
     public InfoItem create(InfoItem entity) {
         if (entity.getId() != null) {
-            Optional<InfoItem> existingInfoItem = infoItemRepository.findById(entity.getId());
-            if (existingInfoItem.isPresent()) {
-                throw new RuntimeException("Crystal Tear with ID " + entity.getId() + " already exists.");
-            }
+            uniqueIdChecker.checkUniqueId(entity.getId());
         }
         return save(entity);
     }
