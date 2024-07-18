@@ -9,7 +9,6 @@ public interface AshOfWarRepository extends JpaRepository<AshOfWar, Long> {
     List<AshOfWar> findByNameContaining(String name);
     List<AshOfWar> findBySkillContaining(String skill);
     List<AshOfWar> findByAffinityContaining(String affinity);
-    List<AshOfWar> findByAvailabilityContaining(String availability);
 
 
 }

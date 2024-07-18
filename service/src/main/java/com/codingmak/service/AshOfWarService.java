@@ -17,7 +17,7 @@ public class AshOfWarService {
     @Autowired
     private UniqueIdChecker uniqueIdChecker;
 
-    public List<AshOfWar> search(Long id, String name, String skill, String affinity, String availability) {
+    public List<AshOfWar> search(Long id, String name, String skill, String affinity) {
         if (id != null) {
             return ashOfWarRepository.findById(id).stream().toList();
         }
@@ -29,9 +29,6 @@ public class AshOfWarService {
         }
         if (affinity != null) {
             return ashOfWarRepository.findByAffinityContaining(affinity);
-        }
-        if (availability != null) {
-            return ashOfWarRepository.findByAvailabilityContaining(availability);
         }
         return ashOfWarRepository.findAll();
     }

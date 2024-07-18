@@ -23,9 +23,8 @@ public class AshOfWarController implements PpdInterface<AshOfWar> {
             @RequestParam(value = "id", required = false) Long id,
             @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "skill", required = false) String skill,
-            @RequestParam(value = "affinity", required = false) String affinity,
-            @RequestParam(value = "availability", required = false) String availability) {
-        return ashOfWarService.search(id, name, skill ,affinity, availability);
+            @RequestParam(value = "affinity", required = false) String affinity) {
+        return ashOfWarService.search(id, name, skill ,affinity);
     }
 
     @Override
