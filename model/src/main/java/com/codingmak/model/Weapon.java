@@ -8,6 +8,7 @@ public class Weapon extends BaseItem {
 
     private double weight;
     private String skill;
+    private int fpCost;
 
     @Embedded
     private Require require;
@@ -35,6 +36,14 @@ public class Weapon extends BaseItem {
 
     public void setSkill(String skill) {
         this.skill = skill;
+    }
+
+    public int getFpCost() {
+        return fpCost;
+    }
+
+    public void setFpCost(int fpCost) {
+        this.fpCost = fpCost;
     }
 
     public Require getRequire() {
