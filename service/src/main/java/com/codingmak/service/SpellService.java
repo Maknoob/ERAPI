@@ -4,11 +4,15 @@ import com.codingmak.model.Require;
 import com.codingmak.model.Spell;
 import com.codingmak.repositories.SpellRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Collections;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class SpellService {
@@ -19,56 +23,69 @@ public class SpellService {
     @Autowired
     private UniqueIdChecker uniqueIdChecker;
 
-    public List<Spell> search(Long id, String name, String type, String bonus) {
-        if (id != null) {
-            return spellRepository.findById(id).stream().toList();
-        }
-        if (name != null && type != null) {
-            return spellRepository.findByNameAndType(name, type);
-        }
-        if (name != null) {
-            return spellRepository.findByNameContaining(name);
-        }
-        if (type != null) {
-            return spellRepository.findByType(type);
-        }
-        if (bonus != null) {
-            return spellRepository.findByBonusContaining(bonus);
-        }
+    @Autowired
+    private PagedResourcesAssembler<Spell> pagedResourcesAssembler;
 
-        return spellRepository.findAll();
+    public long getCount() {
+        return spellRepository.count();
     }
 
-    public List<Spell> searchSorceries(Long id, String name, String bonus) {
-        List<Spell> sorceries = spellRepository.findByType("Sorcery");
-
-        if (id != null) {
-            sorceries = sorceries.stream().filter(spell -> spell.getId().equals(id)).collect(Collectors.toList());
-        }
-        if (name != null) {
-            sorceries = sorceries.stream().filter(spell -> spell.getName().equalsIgnoreCase(name)).collect(Collectors.toList());
-        }
-        if (bonus != null) {
-            sorceries = sorceries.stream().filter(spell -> spell.getBonus().equalsIgnoreCase(bonus)).collect(Collectors.toList());
-        }
-
-        return sorceries;
+    public long getSorceryCount() {
+        return spellRepository.countByType("Sorcery");
     }
 
-    public List<Spell> searchIncantations(Long id, String name, String bonus) {
-        List<Spell> incantations = spellRepository.findByType("Incantation");
+    public long getIncantationCount() {
+        return spellRepository.countByType("Incantation");
+    }
 
+    public PagedModel<?> search(Long id, String name, String type, String bonus, Pageable pageable) {
+        Page<Spell> spellPage;
         if (id != null) {
-            incantations = incantations.stream().filter(spell -> spell.getId().equals(id)).collect(Collectors.toList());
+            Optional<Spell> spell = spellRepository.findById(id);
+            spellPage = spell.map(aow -> new PageImpl<>(Collections.singletonList(aow), pageable, 1))
+                    .orElse(new PageImpl<>(Collections.emptyList(), pageable, 0));
+        } else if (name != null) {
+            spellPage = spellRepository.findByNameContaining(name, pageable);
+        } else if (type != null) {
+            spellPage = spellRepository.findByType(type, pageable);
+        } else if (bonus != null) {
+            spellPage = spellRepository.findByBonusContaining(bonus, pageable);
+        } else {
+            spellPage = spellRepository.findAll(pageable);
         }
-        if (name != null) {
-            incantations = incantations.stream().filter(spell -> spell.getName().equalsIgnoreCase(name)).collect(Collectors.toList());
-        }
-        if (bonus != null) {
-            incantations = incantations.stream().filter(spell -> spell.getBonus().equalsIgnoreCase(bonus)).collect(Collectors.toList());
-        }
+        return pagedResourcesAssembler.toModel(spellPage);
+    }
 
-        return incantations;
+    public PagedModel<?> searchSorceries(Long id, String name, String bonus, Pageable pageable) {
+        Page<Spell> spellPage;
+        if (id != null) {
+            Optional<Spell> spell = spellRepository.findById(id);
+            spellPage = spell.map(aow -> new PageImpl<>(Collections.singletonList(aow), pageable, 1))
+                    .orElse(new PageImpl<>(Collections.emptyList(), pageable, 0));
+        } else if (name != null) {
+            spellPage = spellRepository.findByNameContainingAndType(name, "Sorcery", pageable);
+        } else if (bonus != null) {
+            spellPage = spellRepository.findByBonusContainingAndType(bonus, "Sorcery", pageable);
+        } else {
+            spellPage = spellRepository.findByType("Sorcery", pageable);
+        }
+        return pagedResourcesAssembler.toModel(spellPage);
+    }
+
+    public PagedModel<?> searchIncantations(Long id, String name, String bonus, Pageable pageable) {
+        Page<Spell> spellPage;
+        if (id != null) {
+            Optional<Spell> spell = spellRepository.findById(id);
+            spellPage = spell.map(aow -> new PageImpl<>(Collections.singletonList(aow), pageable, 1))
+                    .orElse(new PageImpl<>(Collections.emptyList(), pageable, 0));
+        } else if (name != null) {
+            spellPage = spellRepository.findByNameContainingAndType(name, "Incantation", pageable);
+        } else if (bonus != null) {
+            spellPage = spellRepository.findByBonusContainingAndType(bonus, "Incantation", pageable);
+        } else {
+            spellPage = spellRepository.findByType("Incantation", pageable);
+        }
+        return pagedResourcesAssembler.toModel(spellPage);
     }
 
     public Spell create(Spell entity) {
