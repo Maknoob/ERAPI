@@ -3,9 +3,14 @@ package com.codingmak.service;
 import com.codingmak.model.*;
 import com.codingmak.repositories.AshOfWarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Collections;
 import java.util.Optional;
 
 @Service
@@ -17,20 +22,34 @@ public class AshOfWarService {
     @Autowired
     private UniqueIdChecker uniqueIdChecker;
 
-    public List<AshOfWar> search(Long id, String name, String skill, String affinity) {
+    @Autowired
+    private PagedResourcesAssembler<AshOfWar> pagedResourcesAssembler;
+
+    public long getCount() {
+        return ashOfWarRepository.count();
+    }
+
+    public PagedModel<?> getPaginatedAshOfWars(Pageable pageable) {
+        Page<AshOfWar> ashOfWarPage = ashOfWarRepository.findAll(pageable);
+        return pagedResourcesAssembler.toModel(ashOfWarPage);
+    }
+
+    public PagedModel<?> search(Long id, String name, String skill, String affinity, Pageable pageable) {
+        Page<AshOfWar> ashOfWarPage;
         if (id != null) {
-            return ashOfWarRepository.findById(id).stream().toList();
+            Optional<AshOfWar> ashOfWar = ashOfWarRepository.findById(id);
+            ashOfWarPage = ashOfWar.map(aow -> new PageImpl<>(Collections.singletonList(aow), pageable, 1))
+                    .orElse(new PageImpl<>(Collections.emptyList(), pageable, 0));
+        } else if (name != null) {
+            ashOfWarPage = ashOfWarRepository.findByNameContaining(name, pageable);
+        } else if (skill != null) {
+            ashOfWarPage = ashOfWarRepository.findBySkillContaining(skill, pageable);
+        } else if (affinity != null) {
+            ashOfWarPage = ashOfWarRepository.findByAffinityContaining(affinity, pageable);
+        } else {
+            ashOfWarPage = ashOfWarRepository.findAll(pageable);
         }
-        if (name != null) {
-            return ashOfWarRepository.findByNameContaining(name);
-        }
-        if (skill != null) {
-            return ashOfWarRepository.findBySkillContaining(skill);
-        }
-        if (affinity != null) {
-            return ashOfWarRepository.findByAffinityContaining(affinity);
-        }
-        return ashOfWarRepository.findAll();
+        return pagedResourcesAssembler.toModel(ashOfWarPage);
     }
 
     public AshOfWar create(AshOfWar entity) {
