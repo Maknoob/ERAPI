@@ -19,6 +19,10 @@ public class UniqueIdChecker {
         String[] repositoryBeanNames = applicationContext.getBeanNamesForType(JpaRepository.class);
 
         for (String beanName : repositoryBeanNames) {
+            if (beanName.equals("userRepository")) {
+                continue;
+            }
+
             JpaRepository repository = (JpaRepository) applicationContext.getBean(beanName);
             if (repository.existsById(id)) {
                 throw new RuntimeException("ID " + id + " already exists in repository: " + beanName);
